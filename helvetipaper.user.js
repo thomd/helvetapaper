@@ -60,11 +60,6 @@ var attachCSS = function(css){
 //
 ;(function(){
 
-    function confirm(question){
-        console.log(question);
-        return true;
-    }
-
     // do not run inside an iframe
     if(top != window) return;
     
@@ -92,8 +87,11 @@ var attachCSS = function(css){
     title.appendChild(document.createTextNode(".*"));
     title.setAttribute("href", "#bottom");
 
-    // remove footer hint
-    $x('//*[@id="left_column"]/div[last()]')[0].style.display="none";
+    // remove hints
+    var hint = $x('//*[@id="bookmark_list"]/following-sibling::div[position()=1]')[0];
+    if(hint != undefined){
+        hint.style.display = "none";
+    }
 
     // set new footer
     var bottom = document.createElement("div");
@@ -151,11 +149,15 @@ var attachCSS = function(css){
         
         
         // action links (edit, delete)
-        var edit = $x('.//*[@class="secondaryControls"]/a[position()=1]', link)[0];
-        var del = $x('.//*[@class="secondaryControls"]/a[last()]', link)[0];
         var controls = $x('.//*[@class="cornerControls"]', link)[0];
-        controls.appendChild(edit);
-        controls.appendChild(del);
+        var edit = $x('.//*[@class="secondaryControls"]/a[position()=1]', link)[0];
+        if(edit != undefined){
+            controls.appendChild(edit);
+        }
+        var del = $x('.//*[@class="secondaryControls"]/a[last()]', link)[0];
+        if(del != undefined){
+            controls.appendChild(del);
+        }
 
 
         // starring
