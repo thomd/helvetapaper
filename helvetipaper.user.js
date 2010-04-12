@@ -60,6 +60,11 @@ var attachCSS = function(css){
 //
 ;(function(){
 
+    function confirm(question){
+        console.log(question);
+        return true;
+    }
+
     // do not run inside an iframe
     if(top != window) return;
     
@@ -72,7 +77,7 @@ var attachCSS = function(css){
     var logo = $x('//*[@id="logo"]')[0];
     var title = $x('//*[@id="logo"]/a')[0];
     var navigation = $x('//*[@id="categoryHeader"]')[0];
-    var currentpage_count = $x('//*[@id="bookmark_list"]/div').length;
+    var currentpage_count = $x('//*[@id="bookmark_list"]//div[@class="titleRow"]').length;
     var username = $x('//div[@id="userpanel"]/b/text()')[0].nodeValue;
     var logout_link = $x('//div[@id="userpanel"]/a')[2];
     var add_link = $x('//div[@id="paginationTop"]/a')[0];
@@ -177,7 +182,7 @@ var attachCSS = function(css){
         var iframe = document.createElement("iframe");
         iframe.setAttribute("src", "http://www.instapaper.com" + href.getAttribute("href"));
         iframe.addEventListener("load", function(ev){
-            var count = $ix('//*[@id="bookmark_list"]/div', this.contentDocument).length;
+            var count = $ix('//*[@id="bookmark_list"]//div[@class="titleRow"]', this.contentDocument).length;
             if(count > 0){
                var counter = document.createElement("sup");
                 counter.appendChild(document.createTextNode(count));
