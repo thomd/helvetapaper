@@ -80,8 +80,6 @@ var attachCSS = function(css){
     var currentpage_count = $x('//*[@id="bookmark_list"]//div[@class="titleRow"]').length;
     var username = $x('//div[@id="userpanel"]/b/text()')[0].nodeValue;
     var logout_link = $x('//div[@id="userpanel"]/a')[2];
-    var add_link = $x('//div[@id="paginationTop"]/a')[0];
-    var folders_link = $x('//div[@id="folders"]//a')[0];
     var nav_links = $x('//h2[@id="categoryHeader"]/a');
     var rss = $x('//link[@rel="alternate"]')[0];
     var footer = $x('//div[@id="footer"]/div')[0];
