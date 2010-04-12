@@ -119,7 +119,7 @@ var attachCSS = function(css){
     bottom.firstChild.appendChild(document.createTextNode("."));
     body.appendChild(bottom);
 
-    
+
     //
     // USERDATA (at top-right of page)
     //
@@ -142,6 +142,7 @@ var attachCSS = function(css){
 
         // page URL
         var page = $x('.//*[@class="titleRow"]/a', link)[0];
+        if(page == undefined) continue;
         var title = page.getAttribute("title");
         var url = document.createElement("div");
         url.setAttribute("class", "titleUrl");
@@ -306,6 +307,8 @@ var css = ''+
 'div#bookmark_list .titleUrl{font-weight:bold;font-size:36px;line-height:1.1;font-family:Helvetica,sans-serif;color:#DDD;width:none;margin:0 0 10px 240px;display:block;}'+
 'div#bookmark_list .tableViewCell:hover .titleUrl{color:#F9F9F9}'+
 'div#bookmark_list .tableViewCell:hover .cornerControls a{color:red !important;}'+
+
+'div#bookmark_list #tableViewCell0 div{color:#444;padding-top:6px;font-size:36px;margin-top:0 !important;}'+
 
 'div#bookmark_list .titleRow{width:100%;margin-left:-150px;padding:0;position:relative;}'+
 'div#bookmark_list .titleRow div.pagelink{width:none;margin-left:190px;display:inline;}'+
