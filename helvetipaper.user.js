@@ -101,7 +101,7 @@ var attachCSS = function(css){
     // extend footer with some promotions
     bottom.firstChild.appendChild(document.createElement("br"));
     var ad1 = document.createElement("a");
-    ad1.setAttribute("href", "http://www.github.com/thomd");
+    ad1.setAttribute("href", "http://thomd.github.com/helvetipaper");
     ad1.appendChild(document.createTextNode("* Helvetica Theme"));
     bottom.firstChild.appendChild(ad1);
     bottom.firstChild.appendChild(document.createTextNode(" 2010 by "));
@@ -135,42 +135,44 @@ var attachCSS = function(css){
     // CHANGE STRUCTURE OF EVERY PAGE-LINK
     //
     var links = $x('//div[@id="bookmark_list"]//div[starts-with(@id,"tableViewCell")]');
-    for(i in links){
-        var link = links[i];
+    if(links.length > 0){
+        for(i in links){
+            var link = links[i];
 
-        // page URL
-        var page = $x('.//*[@class="titleRow"]/a', link)[0];
-        if(page == undefined) continue;
-        var title = page.getAttribute("title");
-        var url = document.createElement("div");
-        url.setAttribute("class", "titleUrl");
-        url.appendChild(document.createTextNode(title));
-        page.parentNode.insertBefore(url, page.nextSibling);
+            // page URL
+            var page = $x('.//*[@class="titleRow"]/a', link)[0];
+            if(page == undefined) continue;
+            var title = page.getAttribute("title");
+            var url = document.createElement("div");
+            url.setAttribute("class", "titleUrl");
+            url.appendChild(document.createTextNode(title));
+            page.parentNode.insertBefore(url, page.nextSibling);
         
         
-        // action links (edit, delete)
-        var controls = $x('.//*[@class="cornerControls"]', link)[0];
-        var edit = $x('.//*[@class="secondaryControls"]/a[position()=1]', link)[0];
-        if(edit != undefined){
-            controls.appendChild(edit);
+            // action links (edit, delete)
+            var controls = $x('.//*[@class="cornerControls"]', link)[0];
+            var edit = $x('.//*[@class="secondaryControls"]/a[position()=1]', link)[0];
+            if(edit != undefined){
+                controls.appendChild(edit);
+            }
+            var del = $x('.//*[@class="secondaryControls"]/a[last()]', link)[0];
+            if(del != undefined){
+                controls.appendChild(del);
+            }
+
+
+            // starring
+            var unstarred = $x('.//*[@class="starToggleUnstarred"]', link)[0];
+            unstarred.replaceChild(document.createTextNode("\u2605"), unstarred.firstChild);
+            page.parentNode.insertBefore(unstarred, page);
+
+            var starred = $x('.//*[@class="starToggleStarred"]', link)[0];
+            starred.replaceChild(document.createTextNode("\u2605"), starred.firstChild);
+            page.parentNode.insertBefore(starred, page);
+
+            var progress = $x('.//*[@class="starToggleProgress"]', link)[0];
+            page.parentNode.insertBefore(progress, page);
         }
-        var del = $x('.//*[@class="secondaryControls"]/a[last()]', link)[0];
-        if(del != undefined){
-            controls.appendChild(del);
-        }
-
-
-        // starring
-        var unstarred = $x('.//*[@class="starToggleUnstarred"]', link)[0];
-        unstarred.replaceChild(document.createTextNode("\u2605"), unstarred.firstChild);
-        page.parentNode.insertBefore(unstarred, page);
-
-        var starred = $x('.//*[@class="starToggleStarred"]', link)[0];
-        starred.replaceChild(document.createTextNode("\u2605"), starred.firstChild);
-        page.parentNode.insertBefore(starred, page);
-
-        var progress = $x('.//*[@class="starToggleProgress"]', link)[0];
-        page.parentNode.insertBefore(progress, page);
     }
 
 
@@ -246,11 +248,10 @@ var attachCSS = function(css){
             node.firstChild.insertData(0, " ");
             node.insertBefore(newFlag, node.firstChild);
         }
-
     }
-    
+
     // get RSS feed (don't request from within an iframe)
-    if(top == window){
+    if(rss && top == window){
         GM_xmlhttpRequest({
              method: "GET",
                 url: rss.getAttribute("href"),
@@ -333,7 +334,14 @@ var css = ''+
 'div#bottom div a{color:red;text-decoration:none;}'+
 'div#bottom div a:hover{text-decoration:none;background:red;color:#FFF !important;padding:6px 12px;margin:-6px -12px;}'+
 
+'#adlabel, #ad, #deckpromo, #adclear{display:none;}'+
+
 'iframe{display:none;}'+
+
+'#content h2#categoryHeader{float:none;}'+
+'#feature_column{float:none;width:100%;margin:0 100px;}'+
+'#side_column{float:none;width:100%;padding:0;margin:0 100px;}'+
+
 '';
 
 attachCSS(css);
