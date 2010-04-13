@@ -98,7 +98,7 @@ var attachCSS = function(css){
     bottom.setAttribute("id", "bottom");
     bottom.appendChild(footer);
 
-    // extend footer with ads
+    // extend footer with some promotions
     bottom.firstChild.appendChild(document.createElement("br"));
     var ad1 = document.createElement("a");
     ad1.setAttribute("href", "http://www.github.com/thomd");
@@ -274,13 +274,13 @@ var css = ''+
 '#header div{display:none;}'+
 
 'h1#logo{font-weight:bold;font-size:144px;line-height:1;font-family:Helvetica,sans-serif;border:none;letter-spacing:-6px;margin:0;padding:40px 100px;}'+
-'h1#logo a{color:red;text-decoration:none;text-shadow:0 0 20px #AAA;}'+
-'h1#logo a:hover{text-decoration:none;background:red;color:#FFF;padding:0 0.2em;margin:0 -0.2em;text-shadow:none;}'+
+'h1#logo a{color:red;background:#FFF;text-decoration:none;}'+
+'h1#logo a:hover{text-decoration:none;background:red;color:#FFF;padding:0 0.2em;margin:0 -0.2em;}'+
 
 '#header{margin-bottom:0;}'+
 '#header div#userdata{display:block;float:right;font-size:16px;margin-top:10px;padding:0;font-weight:bold;}'+
 '#header div#userdata span{margin-right:16px;}'+
-'#header div#userdata a{color:red;font-weight:bold;display:inline-block;width:120px;}'+
+'#header div#userdata a{color:red;font-weight:bold;display:inline-block;width:110px;}'+
 '#header div#userdata a:hover{text-decoration:none;background:red;color:#FFF;padding:2px 0 2px 8px;margin:-2px 0 -2px -8px;}'+
 
 '#content{overflow:hidden;padding-top:10px;}'+
@@ -295,11 +295,10 @@ var css = ''+
 'div#right_column,div#paginationTop{display:none;}'+
 'div#left_column,div#bookmark_list{width:100%;}'+
 
-'div#bookmark_list .tableViewCell{-moz-border-radius:0;border:none;border-top:12px solid #FFF;background:#FFF;}'+
+'div#bookmark_list .tableViewCell{-moz-border-radius:0;border:none;border-top:12px solid #FFF;background:#FFF;padding:0;}'+
 'div#bookmark_list .tableViewCell:hover{background:#DDD;}'+
 'div#bookmark_list .cornerControls{margin-top:12px;}'+
 'div#bookmark_list .cornerControls .textButton{display:none;}'+
-'div#bookmark_list .cornerControls .archiveButton{display:none;}'+
 
 'div#bookmark_list .cornerControls a{font-weight:bold;font-size:16px;line-height:1.1;font-family:Helvetica,sans-serif;color:red;width:100px;margin:0;background:transparent;border:none;display:inline-block;padding:5px;text-align:left;color:#DDD !important;}'+
 'div#bookmark_list .tableViewCell:hover .cornerControls a:hover{text-decoration:none;background:red;color:#FFF !important;padding:7px 13px 5px;margin:-2px -8px 0px;}'+
@@ -308,11 +307,11 @@ var css = ''+
 
 'div#bookmark_list .titleUrl{font-weight:bold;font-size:36px;line-height:1.1;font-family:Helvetica,sans-serif;color:#DDD;width:none;margin:0 0 10px 240px;display:block;}'+
 'div#bookmark_list .tableViewCell:hover .titleUrl{color:#F9F9F9}'+
-'div#bookmark_list .tableViewCell:hover .cornerControls a{color:red !important;}'+
+'div#bookmark_list .tableViewCell:hover .cornerControls a{color:red !important;-moz-border-radius:0;}'+
 
 'div#bookmark_list #tableViewCell0 div{color:#444;padding-top:6px;font-size:36px;margin-top:0 !important;}'+
 
-'div#bookmark_list .titleRow{width:100%;margin-left:-150px;padding:0;position:relative;}'+
+'div#bookmark_list .titleRow{width:100%;margin-left:-140px;padding:0;position:relative;}'+
 'div#bookmark_list .titleRow div.pagelink{width:none;margin-left:190px;display:inline;}'+
 'div#bookmark_list .titleRow a.starToggleStarred{font-size:36px;line-height:1.1;font-family:Helvetica,sans-serif;color:red;width:none;display:inline;position:absolute;left:190px;top:20px;}'+
 'div#bookmark_list .titleRow a.starToggleStarred:hover{text-decoration:none;}'+
