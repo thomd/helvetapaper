@@ -102,6 +102,7 @@ var attachCSS = function(css){
     bottom.firstChild.appendChild(document.createElement("br"));
     var ad1 = document.createElement("a");
     ad1.setAttribute("href", "http://thomd.github.com/helvetipaper");
+    ad1.setAttribute("class", "gh-page");
     ad1.appendChild(document.createTextNode("* Helvetica Theme"));
     bottom.firstChild.appendChild(ad1);
     bottom.firstChild.appendChild(document.createTextNode(" 2010 by "));
@@ -219,13 +220,10 @@ var attachCSS = function(css){
     //
     // NEW-FLAG
     //
-    // put a 'New'-flag on links from within the last week. 
+    // put a 'New'-flag on new links from within the last three days. 
     // For this the RSS feed is parsed.
     //
-	var oneWeek = 1000*60*60*24*7;
-	var twoWeeks = oneWeek*2;
-
-	var timeslot = oneWeek;
+	var timeslot = 1000*60*60*24*3;
 	
     var parseRssFeed = function(response){
         if (!response.responseXML) {
@@ -291,35 +289,37 @@ var css = ''+
 '#content h2#categoryHeader div{display:inline-block;font-size:24px;line-height:1.5;font-family:Helvetica,sans-serif;letter-spacing:0;margin-left:40px;}'+
 '#content h2#categoryHeader div.categorylink a{color:red;display:block;font-size:36px;}'+
 '#content h2#categoryHeader div.categorylink a sup{background:#FAA;color:#FFF;margin-left:3px;}'+
-'#content h2#categoryHeader div.categorylink a:hover{text-decoration:none;background:red;color:#FFF;padding:0 16px;margin:0 -16px;}'+
+'#content h2#categoryHeader div.categorylink a:hover{text-decoration:none;background:red;color:#FFF;padding:0 8px;margin:0 -8px;}'+
 
 'div#right_column,div#paginationTop{display:none;}'+
 'div#left_column,div#bookmark_list{width:100%;}'+
 
 'div#bookmark_list .tableViewCell{-moz-border-radius:0;border:none;border-top:12px solid #FFF;background:#FFF;padding:0;}'+
 'div#bookmark_list .tableViewCell:hover{background:#DDD;}'+
-'div#bookmark_list .cornerControls{margin-top:12px;}'+
+'div#bookmark_list .cornerControls{margin-top:2px;}'+
 'div#bookmark_list .cornerControls .textButton{display:none;}'+
 
-'div#bookmark_list .cornerControls a{font-weight:bold;font-size:16px;line-height:1.1;font-family:Helvetica,sans-serif;color:red;width:100px;margin:0;background:transparent;border:none;display:inline-block;padding:5px;text-align:left;color:#DDD !important;}'+
+'div#bookmark_list .cornerControls a{font-weight:bold;font-size:16px;line-height:1.1;font-family:Helvetica,sans-serif;color:red;width:100px;margin:0;background:transparent;border:none;display:inline-block;padding:5px;text-align:left;color:#FFF !important;}'+
 'div#bookmark_list .tableViewCell:hover .cornerControls a:hover{text-decoration:none;background:red;color:#FFF !important;padding:7px 13px 5px;margin:-2px -8px 0px;}'+
 
 'div#bookmark_list .starBox{float:right;display:none;}'+
 
-'div#bookmark_list .titleUrl{font-weight:bold;font-size:36px;line-height:1.1;font-family:Helvetica,sans-serif;color:#DDD;width:none;margin:0 0 10px 240px;display:block;}'+
+'div#bookmark_list .titleUrl{font-weight:bold;font-size:32px;line-height:1.1;font-family:Helvetica,sans-serif;color:#CCC;width:none;margin:0 0 10px 300px;display:block;}'+
 'div#bookmark_list .tableViewCell:hover .titleUrl{color:#F9F9F9}'+
 'div#bookmark_list .tableViewCell:hover .cornerControls a{color:red !important;-moz-border-radius:0;}'+
 
 'div#bookmark_list #tableViewCell0 div{color:#444;padding-top:6px;font-size:36px;margin-top:0 !important;}'+
 
-'div#bookmark_list .titleRow{width:100%;margin-left:-140px;padding:0;position:relative;}'+
+'div#bookmark_list .titleRow{width:100%;margin-left:-200px;padding:0;position:relative;}'+
 'div#bookmark_list .titleRow div.pagelink{width:none;margin-left:190px;display:inline;}'+
-'div#bookmark_list .titleRow a.starToggleStarred{font-size:36px;line-height:1.1;font-family:Helvetica,sans-serif;color:red;width:none;display:inline;position:absolute;left:190px;top:20px;}'+
+'div#bookmark_list .titleRow a.starToggleStarred{font-size:42px;line-height:1.1;font-family:Helvetica,sans-serif;color:red;width:none;display:inline;position:absolute;left:240px;top:14px;outline:none;}'+
 'div#bookmark_list .titleRow a.starToggleStarred:hover{text-decoration:none;}'+
-'div#bookmark_list .titleRow a.starToggleUnstarred{font-size:36px;line-height:1.1;font-family:Helvetica,sans-serif;color:#DDD;width:none;display:inline;position:absolute;left:190px;top:20px;}'+
+'div#bookmark_list .titleRow a.starToggleUnstarred{font-size:42px;line-height:1.1;font-family:Helvetica,sans-serif;color:#DDD;width:none;display:inline;position:absolute;left:240px;top:14px;outline:none;}'+
+'div#bookmark_list .titleRow a.starToggleProgress{display:inline;position:absolute;left:240px;top:14px;outline:none;}'+
+'div#bookmark_list .titleRow a.starToggleProgress img{display:none;}'+
 'div#bookmark_list .tableViewCell:hover .titleRow a.starToggleUnstarred:hover{text-decoration:none;color:red;}'+
 'div#bookmark_list .tableViewCell:hover a.starToggleUnstarred{color:#F9F9F9}'+
-'div#bookmark_list .titleRow a.tableViewCellTitleLink{font-weight:bold;font-size:36px;line-height:1.1;font-family:Helvetica,sans-serif;color:#444;width:none;display:block;margin:20px 0 0 240px;}'+
+'div#bookmark_list .titleRow a.tableViewCellTitleLink{font-weight:bold;font-size:32px;line-height:1.1;font-family:Helvetica,sans-serif;color:#444;width:none;display:block;margin:20px 0 0 300px;outline:none;}'+
 'div#bookmark_list .titleRow a.tableViewCellTitleLink:hover{text-decoration:none;}'+
 
 'div#bookmark_list .tableViewCell:hover .titleRow a.tableViewCellTitleLink{text-decoration:none;color:red;}'+
@@ -332,7 +332,7 @@ var css = ''+
 'div#bottom{}'+
 'div#bottom div{margin:12em 0 4em 100px !important;}'+
 'div#bottom div a{color:red;text-decoration:none;}'+
-'div#bottom div a:hover{text-decoration:none;background:red;color:#FFF !important;padding:6px 12px;margin:-6px -12px;}'+
+'div#bottom div a.gh-page{margin-left:-9px;}'+
 
 '#adlabel, #ad, #deckpromo, #adclear{display:none;}'+
 
