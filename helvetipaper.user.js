@@ -147,11 +147,10 @@ var attachCSS = function(css){
             // page URL
             var page = $x('.//*[@class="titleRow"]/a', link)[0];
             if(page == undefined) continue;
-            var title = page.getAttribute("title");
-            page.setAttribute("title", "");
+            var href = page.getAttribute("href");
             var url = document.createElement("div");
             url.setAttribute("class", "titleUrl");
-            url.appendChild(document.createTextNode(title));
+            url.appendChild(document.createTextNode(href));
             page.parentNode.insertBefore(url, page.nextSibling);
         
         
