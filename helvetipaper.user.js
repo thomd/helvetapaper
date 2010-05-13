@@ -102,6 +102,7 @@ var attachCSS = function(css){
 
     // extend footer with some promotions
     bottom.firstChild.appendChild(document.createElement("br"));
+    bottom.firstChild.appendChild(document.createElement("br"));
     var ad1 = document.createElement("a");
     ad1.setAttribute("href", "http://thomd.github.com/helvetipaper");
     ad1.setAttribute("class", "gh-page");
@@ -281,29 +282,31 @@ var attachCSS = function(css){
             var story = feature_stories[i];
 
             // parse date
-            var date = $x('.//div[@class="byline"]/text()', story)[1].nodeValue.match(/^\s *(\w+) (\d{1,2}), (\d{4})+/);
-            var month = date[1];
-            var day = date[2];
-            var year = date[3];
+            var byline = $x('.//div[@class="byline"]/text()', story)[1].nodeValue.match(/^\s *(\w+) (\d{1,2}), (\d{4})+.*\s *([\w\.]+) */)
+            var date = document.createElement("div");
+            date.setAttribute("class", "story-date");
+            var day = document.createElement("span");
+            day.setAttribute("class", "story-day");
+            day.appendChild(document.createTextNode(byline[2]));
+            date.appendChild(day);
+            var month = document.createElement("span");
+            month.setAttribute("class", "story-month");
+            month.appendChild(document.createTextNode(byline[1]));
+            date.appendChild(month);
+            var year = document.createElement("span");
+            year.setAttribute("class", "story-year");
+            year.appendChild(document.createTextNode(byline[3]));
+            date.appendChild(year);
+            story.appendChild(date);
+
+            // story host
+            var story_host = byline[4];
             
-            // render nice date
-            var date_div = document.createElement("div");
-            date_div.setAttribute("class", "story-date");
-            var day_span = document.createElement("span");
-            day_span.setAttribute("class", "story-day");
-            day_span.appendChild(document.createTextNode(day));
-            date_div.appendChild(day_span);
-            var month_span = document.createElement("span");
-            month_span.setAttribute("class", "story-month");
-            month_span.appendChild(document.createTextNode(month));
-            date_div.appendChild(month_span);
-            var year_span = document.createElement("span");
-            year_span.setAttribute("class", "story-year");
-            year_span.appendChild(document.createTextNode(year));
-            date_div.appendChild(year_span);
-            story.appendChild(date_div);
-            
+            // read-later link
+            var read_later = $x('.//div[@class="byline"]/a', story)[0];
         }
+
+        $x('//div[@id="feature_column"]/div[last()]')[0].setAttribute("class", "story last-story");
     }
     
 
@@ -392,17 +395,19 @@ var attachCSS = function(css){
 
     '#feature_column{float:none;width:100%;margin:0 0 0 '+(gap)+'px;padding:0;}'+
     '#feature_column .section_header, #side_column{display:none;}'+
-    '#feature_column .story{margin:0 '+(2*gap)+'px 0 0;position:relative;}'+
+    '#feature_column .story{margin:0 '+(2*gap)+'px 30px 0;position:relative;border-bottom:12px solid #F2F2F2;padding:0 0 20px;}'+
     '#feature_column .story .story-date{position:absolute;top:1px;right:'+(content_width+10)+'px;background:#FFF;padding:6px 6px 1px;}'+
     '#feature_column .story .story-date .story-day{display:block;font-size:44px;line-height:1;margin:0 21px 0 4px;text-align:right;color:red;}'+
     '#feature_column .story .story-date .story-month{display:block;text-transform:uppercase;margin:-4px 2px 0 4px;text-align:right;}'+
     '#feature_column .story .story-date .story-year{-moz-transform:rotate(-90deg);position:absolute;top:13px;right:-2px;}'+
-
+    '#feature_column .story .byline{display:none;}'+
+    '#feature_column .story h2 a{font-family:Helvetica,sans-serif;font-size:26px;}'+
+    '#feature_column .story h2 a:hover{text-decoration:none;color:red;}'+
+    '#feature_column .story blockquote p{font-family:Helvetica,sans-serif;font-size:18px;color:#777;}'+
+    '#feature_column .last-story{border-bottom:none;margin-bottom:0;}'+
     '';
 
     attachCSS(css);
-
-
 
 })();
 
