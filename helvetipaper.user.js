@@ -274,6 +274,40 @@ var attachCSS = function(css){
 
 
 
+    // BROWSE (FEATURED STORIES)
+    var feature_stories = $x('//div[@id="feature_column"]/div[@class="story"]');
+    if(feature_stories.length > 0){
+        for(i in feature_stories){
+            var story = feature_stories[i];
+
+            // parse date
+            var date = $x('.//div[@class="byline"]/text()', story)[1].nodeValue.match(/^\s *(\w+) (\d{1,2}), (\d{4})+/);
+            var month = date[1];
+            var day = date[2];
+            var year = date[3];
+            
+            // render nice date
+            var date_div = document.createElement("div");
+            date_div.setAttribute("class", "story-date");
+            var day_span = document.createElement("span");
+            day_span.setAttribute("class", "story-day");
+            day_span.appendChild(document.createTextNode(day));
+            date_div.appendChild(day_span);
+            var month_span = document.createElement("span");
+            month_span.setAttribute("class", "story-month");
+            month_span.appendChild(document.createTextNode(month));
+            date_div.appendChild(month_span);
+            var year_span = document.createElement("span");
+            year_span.setAttribute("class", "story-year");
+            year_span.appendChild(document.createTextNode(year));
+            date_div.appendChild(year_span);
+            story.appendChild(date_div);
+            
+        }
+    }
+    
+
+
     //
     // HELVETIPAPER CSS-STYLES
     //
@@ -356,8 +390,13 @@ var attachCSS = function(css){
 
     'iframe{display:none;}'+
 
-    '#feature_column{float:none;width:100%;margin:0 100px;}'+
-    '#side_column{float:none;width:100%;padding:0;margin:0 100px;}'+
+    '#feature_column{float:none;width:100%;margin:0 0 0 '+(gap)+'px;padding:0;}'+
+    '#feature_column .section_header, #side_column{display:none;}'+
+    '#feature_column .story{margin:0 '+(2*gap)+'px 0 0;position:relative;}'+
+    '#feature_column .story .story-date{position:absolute;top:1px;right:'+(content_width+10)+'px;background:#FFF;padding:6px 6px 1px;}'+
+    '#feature_column .story .story-date .story-day{display:block;font-size:44px;line-height:1;margin:0 21px 0 4px;text-align:right;color:red;}'+
+    '#feature_column .story .story-date .story-month{display:block;text-transform:uppercase;margin:-4px 2px 0 4px;text-align:right;}'+
+    '#feature_column .story .story-date .story-year{-moz-transform:rotate(-90deg);position:absolute;top:13px;right:-2px;}'+
 
     '';
 
