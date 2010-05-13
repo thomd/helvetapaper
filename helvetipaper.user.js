@@ -237,7 +237,7 @@ var attachCSS = function(css){
     // put a 'New'-flag on new links from within the last three days. 
     // For this the RSS feed is parsed.
     //
-	var timeslot = 1000*60*60*24*70;
+	var timeslot = 1000*60*60*24*7;
 	
     var parseRssFeed = function(response){
         if (!response.responseXML) {
@@ -248,8 +248,8 @@ var attachCSS = function(css){
         for(var i = 0, l = items.length; i < l; i++){
             var pubDate = items[i].getElementsByTagName("pubDate")[0].textContent;
             if((+new Date()) - (+new Date(pubDate)) < timeslot){
-                var guid = items[i].getElementsByTagName("guid")[0].textContent;
-                newLinks.push(guid.replace(/^http:\/\/www\.instapaper\.com/, ""));
+                var link = items[i].getElementsByTagName("link")[0].textContent;
+                newLinks.push(link.replace(/^http:\/\/www\.instapaper\.com/, ""));
             }
         }
         for(var n = 0, l = newLinks.length; n < l; n++){
