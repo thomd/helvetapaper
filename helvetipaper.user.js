@@ -152,7 +152,13 @@ var attachCSS = function(css){
             url.setAttribute("class", "titleUrl");
             url.appendChild(document.createTextNode(href));
             page.parentNode.insertBefore(url, page.nextSibling);
-        
+
+            // host
+            var hostname = $x('.//span[@class="host"]/text()', link)[0].nodeValue;
+            var host = document.createElement("div");
+            host.setAttribute("class", "hostName");
+            host.appendChild(document.createTextNode(hostname));
+            page.parentNode.insertBefore(host, page.nextSibling);
         
             // action links (edit, delete)
             var controls = $x('.//*[@class="cornerControls"]', link)[0];
@@ -314,7 +320,10 @@ var attachCSS = function(css){
     'div#bookmark_list .starBox{float:right;display:none;}'+
 
     'div#bookmark_list .titleUrl{font-weight:bold;font-size:24px;line-height:1.1;font-family:Helvetica,sans-serif;color:#CCC;width:none;margin:0 0 20px '+(2*gap)+'px;display:block;}'+
-    'div#bookmark_list .tableViewCell:hover .titleUrl{color:#F9F9F9}'+
+    'div#bookmark_list .titleUrl{display:none;}'+
+    'div#bookmark_list .tableViewCell:hover .titleUrl{color:#BBB;}'+
+    'div#bookmark_list .hostName{font-weight:bold;font-size:26px;line-height:1.1;font-family:Helvetica,sans-serif;color:#CCC;width:none;margin:4px 0 16px '+(2*gap)+'px;display:block;}'+
+    'div#bookmark_list .tableViewCell:hover .hostName{color:#BBB;}'+
     'div#bookmark_list .tableViewCell:hover .cornerControls a{color:red !important;-moz-border-radius:0;text-transform:uppercase;}'+
 
     'div#bookmark_list #tableViewCell0 div{color:#444;padding-top:6px;font-size:36px;margin-top:0 !important;}'+
