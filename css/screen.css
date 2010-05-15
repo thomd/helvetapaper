@@ -1,0 +1,16 @@
+/* css basis */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
+li{list-style:none;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+q:before,q:after{content:'';}
+abbr,acronym{border:0;font-variant:normal;}
+sup{vertical-align:text-top;}
+sub{vertical-align:text-bottom;}
+abbr,acronym{border-bottom:1px dotted #000;cursor:help;}
+body{font:16px/1.125 helvetica,arial,sans-serif;}
+pre,code,kbd,samp,tt{font-family:monospace;*font-size:108%;line-height:100%;}
+
+/* page */
+body{
+    background: #FFF url(../images/noise.png);
+}
