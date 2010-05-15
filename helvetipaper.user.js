@@ -315,7 +315,7 @@ var attachCSS = function(css){
     //
     // HELVETIPAPER CSS-STYLES
     //
-    // used typographic scale [px]: 6 7 8 9 10 11 12 14 16 18 21 24 36 48 60 72 96 120 144
+    // used typographic scale [px]: 6 7 8 9 10 11 12 [14] [16] 18 21 [24] [36] [48] 60 72 96 120 [144]
     // used color scheme: #FFFFFF, #F2F2F2, #E2E2E2, #BBBBBB, #444444, #FF2200
     //
 
@@ -324,7 +324,7 @@ var attachCSS = function(css){
     var gap = ((window.innerWidth - content_width) * 0.5).toFixed(0);
 
     var css = ''+
-    'body{background:#FFF;color:#444;font-weight:bold;font-size:12px;line-height:1.5;font-family:Helvetica,sans-serif;width:100% !important;margin:0;padding:0;border-top:12px solid #F2F2F2;}'+
+    'body{background:#FFF;color:#444;line-height:1.5;font-family:Helvetica,sans-serif;width:100% !important;margin:0;padding:0;border-top:12px solid #F2F2F2;}'+
 
     'h1#logo{font-weight:bold;font-size:144px;line-height:1;font-family:Helvetica,sans-serif;border:none;letter-spacing:-6px;margin:0;padding:40px 0 40px '+(gap-10)+'px;}'+
     'h1#logo a{color:#F2F2F2;background:#FFF;text-decoration:none;outline:none;text-shadow:0px 1px 0px #E2E2E2;}'+
@@ -341,9 +341,9 @@ var attachCSS = function(css){
     '#content h2#categoryHeader span,h2#categoryHeader a{display:none}'+
     '#content h2#categoryHeader sup{-moz-border-radius:10px;background:#BBB;color:#FFF;font-weight:normal;letter-spacing:0;margin-left:-8px;padding:5px 8px 0;}'+
     '#content h2#categoryHeader div{display:inline-block;margin-left:20px;}'+
-    '#content h2#categoryHeader div.categorylink a{color:#F20;display:block;font-size:36px;font-family:Helvetica,sans-serif;letter-spacing:0;height:36px;line-height:1.2;padding:3px 8px;}'+
+    '#content h2#categoryHeader div.categorylink a{color:#F20;display:block;font-size:36px;font-family:Helvetica,sans-serif;letter-spacing:0;height:36px;line-height:1.2;padding:3px 8px;outline:none;}'+
     '#content h2#categoryHeader div.categorylink a:hover{text-decoration:none;background:#F20;color:#FFF;}'+
-    '#content h2#categoryHeader div.categorylink a sup{background:#FAA;color:#FFF;margin-left:3px;}'+
+    '#content h2#categoryHeader div.categorylink a sup{background:#FAA;color:#FFF;display:inline-block;margin:-14px -2px 0 3px;}'+
 
     'div#right_column,div#paginationTop{display:none;}'+
     'div#left_column,div#bookmark_list{width:100%;}'+
@@ -360,7 +360,7 @@ var attachCSS = function(css){
 
     'div#bookmark_list .titleUrl{font-weight:bold;font-size:24px;line-height:1.1;font-family:Helvetica,sans-serif;color:#BBB;width:none;margin:0 0 20px '+(2*gap)+'px;display:block;}'+
     'div#bookmark_list .titleUrl{display:none;}'+
-    'div#bookmark_list .hostName{font-weight:bold;font-size:24px;line-height:1.1;font-family:Helvetica,sans-serif;color:#BBB;width:none;margin:4px 0 16px '+(2*gap)+'px;display:block;}'+
+    'div#bookmark_list .hostName{font-weight:bold;font-size:24px;line-height:1.2;font-family:Helvetica,sans-serif;color:#BBB;width:none;margin:0 0 16px '+(2*gap)+'px;display:block;}'+
     'div#bookmark_list .tableViewCell:hover .cornerControls a{color:#F20 !important;-moz-border-radius:0;}'+
 
     'div#bookmark_list #tableViewCell0 div{color:#444;padding-top:6px;font-size:36px;margin-top:0 !important;}'+
@@ -373,7 +373,7 @@ var attachCSS = function(css){
     'div#bookmark_list .titleRow a.starToggleProgress{display:inline;position:absolute;left:'+(2*gap-60)+'px;top:19px;outline:none;}'+
     'div#bookmark_list .titleRow a.starToggleProgress img{display:none;}'+
     'div#bookmark_list .tableViewCell:hover .titleRow a.starToggleUnstarred:hover{text-decoration:none;color:#F20;}'+
-    'div#bookmark_list .titleRow a.tableViewCellTitleLink{font-weight:bold;font-size:24px;line-height:1.1;font-family:Helvetica,sans-serif;color:#444;width:none;display:block;margin:25px 0 0 '+(2*gap)+'px;outline:none;}'+
+    'div#bookmark_list .titleRow a.tableViewCellTitleLink{font-weight:bold;font-size:24px;line-height:1.2;font-family:Helvetica,sans-serif;color:#444;width:none;display:block;margin:25px 0 0 '+(2*gap)+'px;outline:none;}'+
     'div#bookmark_list .titleRow a.tableViewCellTitleLink:hover{text-decoration:none;}'+
 
     'div#bookmark_list .tableViewCell:hover .titleRow a.tableViewCellTitleLink{text-decoration:none;color:#F20;}'+
