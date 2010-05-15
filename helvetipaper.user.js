@@ -315,7 +315,7 @@ var attachCSS = function(css){
     //
     // HELVETIPAPER CSS-STYLES
     //
-    // used typographic scale [px]: 6 7 8 9 10 11 12 [14] [16] 18 21 [24] [36] [48] 60 72 96 120 [144]
+    // used typographic scale [px]: 6 7 8 9 10 11 [12] [14] [16] 18 21 [24] [36] [48] 60 72 96 120 [144]
     // used color scheme: #FFFFFF, #F2F2F2, #E2E2E2, #BBBBBB, #444444, #FF2200
     //
 
@@ -382,7 +382,7 @@ var attachCSS = function(css){
     'div#bookmark_list .secondaryControls{display:none;}'+
 
     'div#footer{display:none;}'+
-    'div#bottom{background:#F2F2F2;}'+
+    'div#bottom{background:#F2F2F2;font-size:12px;}'+
     'div#bottom div{padding:120px 0 40px '+(gap)+'px !important;margin-top:0 !important;}'+
     'div#bottom div a{color:#F20;text-decoration:none;}'+
 
