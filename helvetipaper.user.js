@@ -158,14 +158,18 @@ var attachCSS = function(css){
             host.appendChild(document.createTextNode(hostname));
             page.parentNode.insertBefore(host, page.nextSibling);
         
-            // action links (edit, delete)
+            // action links (archive, edit, delete, ...)
             var controls = $x('.//*[@class="cornerControls"]', link)[0];
+            var archive = $x('./a[last()]', controls)[0];
+            archive.setAttribute("title", "");
             var edit = $x('.//*[@class="secondaryControls"]/a[position()=1]', link)[0];
             if(edit != undefined){
+                edit.setAttribute("title", "");
                 controls.appendChild(edit);
             }
             var del = $x('.//*[@class="secondaryControls"]/a[last()]', link)[0];
             if(del != undefined){
+                del.setAttribute("title", "");
                 controls.appendChild(del);
             }
 
@@ -235,7 +239,7 @@ var attachCSS = function(css){
     // put a 'New'-flag on new links from within the last three days. 
     // For this the RSS feed is parsed.
     //
-	var timeslot = 1000*60*60*24*7;
+	var timeslot = 1000*60*60*24*3;
 	
     var parseRssFeed = function(response){
         if (!response.responseXML) {
@@ -346,7 +350,7 @@ var attachCSS = function(css){
     'div#left_column{padding-bottom:8px !important;}'+
 
     'div#bookmark_list .tableViewCell{-moz-border-radius:0;border:none;border-top:8px solid #FFF;border-bottom:1px solid #E2E2E2;background:#F2F2F2;padding:0;}'+
-    'div#bookmark_list .cornerControls{margin-top:15px;}'+
+    'div#bookmark_list .cornerControls{margin-top:9px;}'+
     'div#bookmark_list .cornerControls .textButton{display:none;}'+
 
     'div#bookmark_list .cornerControls a{font-weight:bold;font-size:16px;line-height:1.1;font-family:Helvetica,sans-serif;color:#F20;width:100px;margin:0;background:transparent;border:none;display:inline-block;padding:5px;text-align:left;color:#F2F2F2 !important;outline:none;}'+
