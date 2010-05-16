@@ -12,5 +12,5 @@ pre,code,kbd,samp,tt{font-family:monospace;*font-size:108%;line-height:100%;}
 
 /* page */
 body{
-    background: #FFF url(../images/noise.png);
+    background: #EEE url(../images/background.jpg) no-repeat top left;
 }
