@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="author" content="Thomas Duerr" />
-    <meta name="keywords" content="Greasemonkey Userscript Helvetica Instapaper Helvetipaper Theme Minimalistic" />
+    <meta name="keywords" content="{{ page.keywords }}" />
     <meta name="description" content="{{ page.title }}" />
 
     <title>{{ page.title }}</title>
 
     <link rel="stylesheet" href="css/screen.css" type="text/css" media="screen, projection" />
   </head>
-  <body id="{{ page.body_id }}">
+  <body>
 	{{ content }}
   </body>
 </html>
