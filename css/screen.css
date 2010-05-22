@@ -1,16 +1,133 @@
-/* css basis */
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}
-li{list-style:none;}
-h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
-q:before,q:after{content:'';}
-abbr,acronym{border:0;font-variant:normal;}
-sup{vertical-align:text-top;}
-sub{vertical-align:text-bottom;}
-abbr,acronym{border-bottom:1px dotted #000;cursor:help;}
-body{font:16px/1.125 helvetica,arial,sans-serif;}
-pre,code,kbd,samp,tt{font-family:monospace;*font-size:108%;line-height:100%;}
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+article, aside, audio, figure, figcaption, footer, header, nav, section, video {
+	display: block; /* Fixes new HTML5 elements */
+}
+
+header, aside, footer {
+	float: left; 
+	clear: both; 
+	width: 100%;
+}
+
 
 /* page */
-body{
+
+body {
     background: #EEE url(../images/background.jpg) no-repeat top left;
+    max-width: 936px;
+	width: 936px;
+	margin: 0 auto;
 }
+
+img.screenshot {
+    margin-left: -26px;
+}
+
+
+
+
+/* Columns */
+
+.ten {
+	width: 936px;
+}
+.nine {
+	width: 840px; 
+	display: block; 
+	float: left; 
+	margin-left: 24px;
+}
+.eight {
+	width: 744px; display: block; float: left; margin-left: 24px;
+}
+.seven {
+	width: 648px; display: block; float: left; margin-left: 24px;
+}
+.six {
+	width: 552px; display: block; float: left; margin-left: 24px;
+}
+.five {
+	width: 456px; display: block; float: left; margin-left: 24px;
+}
+.four {
+	width: 360px; display: block; float: left; margin-left: 24px;
+}
+.three {
+	width: 264px; display: block; float: left; margin-left: 24px;
+}
+.two {
+	width: 168px; display: block; float: left; margin-left: 24px;
+}
+.one {
+	width: 72px;  display: block; float: left; margin-left: 24px;
+}
+
+
+/* Leftmost column in each row */
+
+.first, ten {
+	margin-left: 0;	clear: left;
+}
+
+
+/* Column offsets */
+
+.off-nine {
+	margin-left: 864px;
+}
+.off-eight {
+	margin-left: 768px;
+}
+.off-seven {
+	margin-left: 672px;
+}
+.off-six {
+	margin-left: 576px;
+}
+.off-five {
+	margin-left: 480px;
+}	
+.off-four {
+	margin-left: 384px;
+}
+.off-three {
+	margin-left: 288px;
+}
+.off-two {
+	margin-left: 192px;
+}
+.off-one {
+	margin-left: 96px;
+}
+
+
+/* Pins element to the left or right corner */
+
+.pin-left  {
+	position: absolute; top: 0; margin-left: 0; left: 0;
+}
+.pin-right {
+	position: absolute; top: 0; margin-left: 0; right: 0;
+}
+
+
+/* Combine with a column class */
+
+.hang {
+	float: right;
+}
+
+
+
+
+header {
+    width:960px;
+    margin:0 auto;
+}
+section {}
+footer {}
