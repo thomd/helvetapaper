@@ -1,37 +1,262 @@
 
-body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td {
+/* CSS reset */
+
+body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, code, ol, ul, li {
     margin: 0;
     padding: 0;
+    border: 0;
 }
 
-article, aside, audio, figure, figcaption, footer, header, nav, section, video {
+header, section, footer, aside, figure, figcaption {
 	display: block; /* Fixes new HTML5 elements */
 }
 
-header, aside, footer {
+header, section, footer {
 	float: left; 
 	clear: both; 
 	width: 100%;
 }
 
+ul, ol {
+    display:block;
+    list-style:none;
+}
+
+
+/* Typographic reset */
+ 
+body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, code, ol, ul, li, aside, figcaption {
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 16px;
+    font-family: inherit;
+    vertical-align: baseline;
+}
+
+
+
 
 /* page */
 
 body {
+    font: normal normal 13px/1.615 Helvetica,sans-serif;
     background: #EEE url(../images/background.jpg) no-repeat top left;
     max-width: 936px;
 	width: 936px;
-	margin: 0 auto;
+	margin: 2.615em auto;
+	color:#111;
+    font-size-adjust:none;
+    font-style:normal;
+    font-variant:normal;
+    font-weight:normal;
+}
+
+a, a:link, a:visited, a:focus, a:hover, a:active  {
+    color: red;
+    text-decoration: underline;
 }
 
 img.screenshot {
     margin-left: -26px;
 }
 
+figcaption {
+    color: #111;
+    font-size: 1em;
+    margin: -10px 0 0 16px;
+    padding-bottom: 4em;
+}
+
+p, aside { padding: 0 0 0.8125em 0; }
+
+h1,h2,h3,h4 { 
+    margin-bottom: 5px;
+    font-weight:normal; 
+}
+ 
+h1 {
+    font-size: 2.615em;  /* 34px */
+    line-height:1.18;
+    font-weight: bold;
+    color: red;
+}
+
+h2 { 
+    font-size: 2em;  /* 26px */
+    line-height:1.19;    
+}
+
+h3 {
+    font-size: 1.618em; /* 21 */
+    line-height:1.24;   
+}
+
+h4 {
+    font-size: 1.308em; /* 17*/
+    line-height:1.23;
+}
+
+cite {
+    /*  „  “ ‚  ‘       */
+    quotes:  "\201E" "\201C" "\201A " "\2018";
+    /*  “  ” ‘  ’       */
+    /*quotes: "\201C" "\201D" "\2018" "\2019";*/
+    font-style: italic;
+}
+
+cite:before {
+    content: open-quote;
+}
+
+cite:after {
+    content: close-quote;
+}
 
 
 
-/* Columns */
+/* color scheme & typographic scale */
+
+.color-scheme, .typoggraphic-scale {
+    margin: 30px 0 20px;
+    overflow: hidden;
+}
+
+.color-scheme li {
+    border: 1px solid #FFF;
+    float: left;
+    padding: 8px 14px 4px;
+    margin-right: 14px;
+    font-size: 0.875em;
+}
+
+.color-scheme li.color-ffffff {
+    background: #FFF;
+    border: 1px solid #CCC;
+}
+
+.color-scheme li.color-f2f2f2 {
+    background: #F2F2F2;
+    border: 1px solid #CCC;
+}
+
+.color-scheme li.color-e2e2e2 {
+    background: #E2E2E2;
+    border: 1px solid #CCC;
+}
+
+.color-scheme li.color-bbbbbb {
+    color: #FFF;
+    background: #BBB;
+    border: 1px solid #FFF;
+}
+
+.color-scheme li.color-444444 {
+    color: #FFF;
+    background: #444;
+    border: 1px solid #FFF;
+}
+
+.color-scheme li.color-ff2200 {
+    color: #FFF;
+    background: #FF2200;
+    border: 1px solid #FFF;
+}
+
+.typoggraphic-scale li {
+    display: inline-block;
+    line-height: 1;
+    color: #BBB;
+    font-weight: bold;
+    margin-right: 4px;
+}
+
+.typoggraphic-scale li.selected {
+    color: #111;
+}
+
+.typoggraphic-scale li.size-6 {
+    font-size: 6px;
+}
+
+.typoggraphic-scale li.size-7 {
+    font-size: 7px;
+}
+
+.typoggraphic-scale li.size-8 {
+    font-size: 8px;
+}
+
+.typoggraphic-scale li.size-9 {
+    font-size: 9px;
+}
+
+.typoggraphic-scale li.size-10 {
+    font-size: 10px;
+}
+
+.typoggraphic-scale li.size-11 {
+    font-size: 11px;
+}
+
+.typoggraphic-scale li.size-12 {
+    font-size: 12px;
+}
+
+.typoggraphic-scale li.size-14 {
+    font-size: 14px;
+}
+
+.typoggraphic-scale li.size-16 {
+    font-size: 16px;
+}
+
+.typoggraphic-scale li.size-18 {
+    font-size: 18px;
+}
+
+.typoggraphic-scale li.size-21 {
+    font-size: 21px;
+}
+
+.typoggraphic-scale li.size-24 {
+    font-size: 24px;
+}
+
+.typoggraphic-scale li.size-36 {
+    font-size: 36px;
+}
+
+.typoggraphic-scale li.size-48 {
+    font-size: 48px;
+}
+
+.typoggraphic-scale li.size-60 {
+    font-size: 60px;
+}
+
+.typoggraphic-scale li.size-72 {
+    font-size: 72px;
+}
+
+.typoggraphic-scale li.size-96 {
+    font-size: 96px;
+}
+
+.typoggraphic-scale li.size-120 {
+    font-size: 120px;
+}
+
+.typoggraphic-scale li.size-144 {
+    font-size: 144px;
+}
+
+
+
+
+
+
+
+/* Columns Grid */
 
 .ten {
 	width: 936px;
