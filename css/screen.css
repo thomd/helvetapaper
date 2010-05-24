@@ -51,13 +51,26 @@ body {
     font-weight:normal;
 }
 
+header {
+    margin: 1em auto 2em;
+}
+
 a, a:link, a:visited, a:focus, a:hover, a:active  {
-    color: red;
+    color: #111;
     text-decoration: underline;
+}
+
+em {
+    font-weight: bold;
+    font-style: normal;
 }
 
 img.screenshot {
     margin-left: -26px;
+}
+
+figure {
+    margin-top: 2em;
 }
 
 figcaption {
@@ -67,9 +80,26 @@ figcaption {
     padding-bottom: 4em;
 }
 
-p, aside { padding: 0 0 0.8125em 0; }
+p, aside { 
+    padding: 0 0 0.8125em 0; 
+}
 
-h1,h2,h3,h4 { 
+p { 
+    padding-top: 10px;
+}
+
+aside { 
+    border-top: 4px solid red;
+    margin-top: 0;
+    padding: 6px 0 36px;
+    font-size: 14px;
+}
+
+aside a { 
+    font-size: 14px;
+}
+
+h1, h2, h3, h4 { 
     margin-bottom: 5px;
     font-weight:normal; 
 }
@@ -87,20 +117,20 @@ h2 {
 }
 
 h3 {
-    font-size: 1.618em; /* 21 */
+    font-size: 1.618em; /* 21px */
     line-height:1.24;   
 }
 
 h4 {
-    font-size: 1.308em; /* 17*/
+    font-size: 1.308em; /* 17px */
     line-height:1.23;
 }
 
 cite {
     /*  „  “ ‚  ‘       */
-    quotes:  "\201E" "\201C" "\201A " "\2018";
+    /*quotes:  "\201E" "\201C" "\201A " "\2018";*/
     /*  “  ” ‘  ’       */
-    /*quotes: "\201C" "\201D" "\2018" "\2019";*/
+    quotes: "\201C" "\201D" "\2018" "\2019";
     font-style: italic;
 }
 
@@ -350,9 +380,5 @@ cite:after {
 
 
 
-header {
-    width:960px;
-    margin:0 auto;
-}
 section {}
 footer {}
