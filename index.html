@@ -11,7 +11,7 @@ title: Helvetapaper - a minimalistic theme for Instapaper
 </header>
 
 <section id="introduction">
-  <p class="first seven">Helvetapaper is a minimalistic theme for <em>Instapaper</em>. Helvetapaper gives this wonderful web application a cleaner, more objective look, focused and reduced on functionality which is&#8212;in my opinion&#8212;the essential minimum. See <a href="#fig-1">Fig.1</a> for a screenshot.</p>
+  <p class="first seven">Helvetapaper is a minimalistic theme for <em>Instapaper</em>. Helvetapaper gives this terrific web application a cleaner, more objective look, focused and reduced on functionality which is&#8212;in my opinion&#8212;an essential minimum. See <a href="#fig-1">Fig.1</a> for a screenshot.</p>
 
 	<aside class="three"><a href="http://www.instapaper.com/" title="www.instapaper.com">Instapaper</a> is <cite>a simple tool to save web pages for reading later</cite> by <a href="http://www.marco.org/about" title="About Marco Arment">Marco Arment</a>.</aside>
 
@@ -22,21 +22,27 @@ title: Helvetapaper - a minimalistic theme for Instapaper
     <figcaption><em>Fig.1</em> Screenshot of Instapaper themed by Helvetapaper.</figcaption>
   </figure>
 
-  <p class="first seven">Helvetapaper hides some features of Instapaper. This was a deliberate decision, because I currently do not use them at all. If I will find them useful one day, I will of course unhide them. You may also drop me an Issue in Github, so I will consider it on future changes. You may also <a href="http://github.com/thomd/helvetipaper">fork</a> this userscript and fix it for your personal needs. On the other hand, Helvetapaper adds some new features which are vital for my daily usage of Instapaper. Currentyl these are:</p>
-
+  <p class="first seven">Helvetapaper hides some features of Instapaper. This was a deliberate decision. I currently do not use all features of Instapaper. If you are missing features which are important for you, drop me a <a href="http://github.com/thomd/helvetipaper/issues" title="Github Issue Tracker">Github issue</a> or <a href="http://github.com/thomd/helvetipaper" title="Fork Helvetipaper from Github">fork Helvetapaper</a> and customize it for your personal needs.</p>
+  <p class="first seven">On the other hand, Helvetapaper adds some <em>new features</em> which are vital for my daily usage of Instapaper. The following enhancements are currently implemented:</p>
   <ul class="first seven">
-    <li>Show number of links.</li>
-    <li>Flag new links (new links from within the last three days).</li>
+    <li><em class="page-counter-flag">page-counter flag</em> on each top-category link (Unread, Starred, Archive).</li>
+    <li><em class="new-page-flag">new-page flag</em> on saved pages from within the last three days.</li>
   </ul>
 </section>
 
 <section id="identity">
   <h2 class="first ten">Helvetapaper Identity</h2>
-  <p class="first seven">Helvetapaper is based on Helvetica typeface.</p>
+  <p class="first seven">Helvetapaper is based on the <em>Helvetica</em> typeface. Considering web fonts, the Helvetica font is <a href="http://www.codestyle.org/css/font-family/sampler-CombinedResults.shtml" title="Font survey results from codestyle.org">reliably installed on Mac OS</a> only, on Windows OS one should use Arial as a fallback. But there still exist some <a href="http://delicious.com/thomd/helvetica+arial+css" title="Links considering Hervetica vs. Arial as web fonts.">rendering flaws and other drawbacks when using Helvetica on Windows OS</a>.</p>
   <aside class="three">
     <a href="http://en.wikipedia.org/wiki/Helvetica" title="Wikipedia article about the typeface Helvetica.">Helvetica</a> is a sans-serif typeface by Max Miedinger and Eduard Hoffmann released in 1957.
   </aside>
-  <figure id="fig-2" class="first ten">
+
+  <figure id="fig-2" class="first seven">
+    <code>font-family: Helvetica, Arial, sans-serif;</code>
+    <figcaption><em>Fig.2</em> Current CSS font stack (for the time being)</figcaption>
+  </figure>
+
+  <figure id="fig-3" class="first seven">
     <ol class="color-scheme">
       <li class="color-ffffff">#FFFFFF</li>
       <li class="color-f2f2f2">#F2F2F2</li>
@@ -45,34 +51,47 @@ title: Helvetapaper - a minimalistic theme for Instapaper
       <li class="color-444444">#444444</li>
       <li class="color-ff2200">#FF2200</li>
     </ol>
-    <figcaption><em>Fig.2</em> Color Scheme</figcaption>
+    <figcaption><em>Fig.3</em> Color Scheme</figcaption>
   </figure>
-  <figure id="fig-3" class="first ten">
+
+  <figure id="fig-4" class="first seven">
     <ol class="typoggraphic-scale">
-      <li class="size-6">6</li>
-      <li class="size-7">7</li>
-      <li class="size-8">8</li>
-      <li class="size-9">9</li>
-      <li class="size-10">10</li>
-      <li class="size-11">11</li>
-      <li class="size-12 selected">12</li>
-      <li class="size-14 selected">14</li>
-      <li class="size-16 selected">16</li>
-      <li class="size-18">18</li>
-      <li class="size-21">21</li>
-      <li class="size-24 selected">24</li>
-      <li class="size-36 selected">36</li>
-      <li class="size-48 selected">48</li>
+      <li class="size-6">Aa</li>
+      <li class="size-7">Aa</li>
+      <li class="size-8">Aa</li>
+      <li class="size-9">Aa</li>
+      <li class="size-10">Aa</li>
+      <li class="size-11">Aa</li>
+      <li class="size-12 selected">Aa</li>
+      <li class="size-14 selected">Aa</li>
+      <li class="size-16 selected">Aa</li>
+      <li class="size-18">Aa</li>
+      <li class="size-21">Aa</li>
+      <li class="size-24 selected">Aa</li>
+      <li class="size-36 selected">Aa</li>
+      <li class="size-48 selected">Aa</li>
+      <li class="size-60">Aa</li>
+      <li class="size-72">Aa</li>
     </ol>
-    <figcaption><em>Fig.3</em> Typographic Scale [px]</figcaption>
-  </figure>
-  <figure id="fig-4" class="first ten">
-    <div class="typeface">
-      ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
-      abcdefghijklmnopqrstuvwxyz<br>
-      0123456789
-    </div>
-    <figcaption><em>Fig.4</em> Helvetica Bold Typeface</figcaption>
+    <ol class="typoggraphic-unit">
+      <li class="unit-6">6</li>
+      <li class="unit-7">7</li>
+      <li class="unit-8">8</li>
+      <li class="unit-9">9</li>
+      <li class="unit-10">10</li>
+      <li class="unit-11">11</li>
+      <li class="unit-12">12</li>
+      <li class="unit-14">14</li>
+      <li class="unit-16">16</li>
+      <li class="unit-18">18</li>
+      <li class="unit-21">21</li>
+      <li class="unit-24">24</li>
+      <li class="unit-36">36</li>
+      <li class="unit-48">48</li>
+      <li class="unit-60">60</li>
+      <li class="unit-72">72</li>
+    </ol>
+    <figcaption><em>Fig.4</em> Typographic Scale [in <em>px</em>]</figcaption>
   </figure>
 </section>
 
@@ -96,6 +115,7 @@ title: Helvetapaper - a minimalistic theme for Instapaper
     <li>Add a favicon.</li>
     <li>Integration of an updater script (only for userscript hosted on userscripts.org).</li>
     <li>Use an external Helvetica typeface via @font-face (I'm not sure about this, because Helvetica should be a web&ndash;safe font.)</li>
+    <li>Options for configuration issues.</li>
   </ul>
   
   <h2>Github</h2>
