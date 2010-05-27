@@ -1,10 +1,10 @@
-Helvetipaper
+Helvetapaper
 ============
 
-A minimalistic theme for Instapaper (inspired by [Helvetireader](http://www.helvetireader.com/))
+A minimalistic theme for Instapaper.
 
 
 Installation
 ------------
 
-[install userscript](http://github.com/thomd/helvetipaper/raw/master/helvetipaper.user.js)
+see [thomd.github.com/helvetapaper](http://thomd.github.com/helvetapaper)

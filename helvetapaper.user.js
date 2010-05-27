@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name          Helvetipaper
+// @name          Helvetapaper
 // @namespace     http://thomd.net/userscript
-// @description   A minimalistic theme for Instapaper (inspired by http://www.helvetireader.com/)
+// @description   A minimalistic theme for Instapaper
 // @include       http://instapaper.com/*
 // @include       http://*.instapaper.com/*
 // @author        Thomas Duerr
@@ -101,9 +101,9 @@ var attachCSS = function(css){
     bottom.firstChild.appendChild(document.createElement("br"));
     bottom.firstChild.appendChild(document.createElement("br"));
     var ad1 = document.createElement("a");
-    ad1.setAttribute("href", "http://thomd.github.com/helvetipaper");
+    ad1.setAttribute("href", "http://thomd.github.com/helvetapaper");
     ad1.setAttribute("class", "gh-page");
-    ad1.appendChild(document.createTextNode("Helvetica Theme"));
+    ad1.appendChild(document.createTextNode("Helvetapaper Theme"));
     bottom.firstChild.appendChild(ad1);
     bottom.firstChild.appendChild(document.createTextNode(" 2010. By "));
     var ad2 = document.createElement("a");
@@ -112,8 +112,8 @@ var attachCSS = function(css){
     bottom.firstChild.appendChild(ad2);
     bottom.firstChild.appendChild(document.createTextNode(". Contact: "));
     var ad3 = document.createElement("a");
-    ad3.setAttribute("href", "mailto:helvetipaper@thomd.net");
-    ad3.appendChild(document.createTextNode("helvetipaper@thomd.net"));
+    ad3.setAttribute("href", "mailto:helvetapaper@thomd.net");
+    ad3.appendChild(document.createTextNode("helvetapaper@thomd.net"));
     bottom.firstChild.appendChild(ad3);
     bottom.firstChild.appendChild(document.createTextNode("."));
     body.appendChild(bottom);
@@ -313,7 +313,7 @@ var attachCSS = function(css){
 
 
     //
-    // HELVETIPAPER CSS-STYLES
+    // HELVETAPAPER CSS-STYLES
     //
     // used typographic scale [px]: 6 7 8 9 10 11 [12] [14] [16] 18 21 [24] [36] [48] 60 72 96 120 [144]
     // used color scheme: #FFFFFF, #F2F2F2, #E2E2E2, #BBBBBB, #444444, #FF2200
