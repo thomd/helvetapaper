@@ -62,7 +62,7 @@ a, a:link, a:visited, a:focus, a:hover, a:active {
 
 a.button {
     color: #FFF;
-    background: -moz-linear-gradient(-90deg, #0CA6DD, #0770A0) repeat scroll 0 0 transparent;
+    background: -moz-linear-gradient(-90deg, #FF4C2F, #AF1900) repeat scroll 0 0 transparent;
     text-decoration: none;
     padding: 8px 20px 6px;
     margin-top: 12px;
@@ -384,8 +384,29 @@ code {
     margin-right: 0;
 }
 
+#footer {
+    color: #666;
+    font-size: 0.8125em;
+    margin: 6em 0 3em;
+    padding: 1em 0 0;
+    border-top: 4px solid red;
+}
 
+#footer a {
+    color: #666;
+    font-weight: normal;
+    font-size: 1em;
+}
 
+#issues ul {
+    
+}
+
+#issues ul li {
+    margin: 2px 0 0px 24px;
+    list-style: disc;
+    font-size: 0.875em;
+}
 
 
 
@@ -480,8 +501,3 @@ code {
 	float: right;
 }
 
-
-
-
-section {}
-footer {}

@@ -23,9 +23,9 @@ title: Helvetapaper - a minimalistic theme for Instapaper
   </figure>
 
   <p class="first seven">Helvetapaper hides some features of Instapaper. This was a deliberate decision. I currently do not use all features of Instapaper. If you are missing features which are important for you, drop me a <a href="http://github.com/thomd/helvetipaper/issues" title="Github Issue Tracker">Github issue</a> or <a href="http://github.com/thomd/helvetipaper" title="Fork Helvetipaper from Github">fork Helvetapaper</a> and customize it for your personal needs.</p>
-  <p class="first seven">On the other hand, Helvetapaper adds some <em>new features</em> which are vital for my daily usage of Instapaper. The following enhancements are currently implemented:</p>
+  <p class="first seven">On the other hand, Helvetapaper adds some <em>new features</em> which are vital for my daily usage of Instapaper. The following enhancements, as shown in <a href="#fig-1">Fig.1</a>, are currently implemented:</p>
   <ul class="first seven">
-    <li><em class="page-counter-flag">page-counter flag</em> on each top-category link (Unread, Starred, Archive).</li>
+    <li><em class="page-counter-flag">page-counter flags</em> on each top-category link (Unread, Starred and Archive).</li>
     <li><em class="new-page-flag">new-page flag</em> on saved pages from within the last three days.</li>
   </ul>
 </section>
@@ -54,6 +54,7 @@ title: Helvetapaper - a minimalistic theme for Instapaper
     <figcaption><em>Fig.3</em> Helvetapaper Color Scheme</figcaption>
   </figure>
 
+<!--
   <figure id="fig-4" class="first seven">
     <ol class="typoggraphic-scale">
       <li class="size-6">Aa</li>
@@ -93,40 +94,39 @@ title: Helvetapaper - a minimalistic theme for Instapaper
     </ol>
     <figcaption><em>Fig.4</em> Helvetapaper Typographic Scale [in <em>px</em>]</figcaption>
   </figure>
+-->
 </section>
 
 <section id="usage">
   <h2 class="first seven">Usage</h2>
-  <p class="first seven">In order to theme your personal Instapaper with Helvetapaper, you need to have <a href="http://www.greasespot.net/" title="The weblog about Greasemonkey">Greasemonkey</a> installed as a <a href="https://addons.mozilla.org/de/firefox/addon/748/" title="Greasemonkey Firefox Add-on">Firefox Add-on</a>.</p>
+  <p class="first seven">In order to theme your personal Instapaper with Helvetapaper, you need to have <a href="http://www.greasespot.net/" title="The weblog about Greasemonkey">Greasemonkey</a> installed.<br />Greasemonkey is a <em>Firefox</em> <a href="https://addons.mozilla.org/de/firefox/addon/748/" title="Greasemonkey Firefox Add-on">Add-on</a> that allows us to <em>control the way we use the web</em>.</p>
+    <aside class="three">
+      Also visit <a href="http://userscripts.org/" title="http://userscripts.org">Userscripts.org</a>, a userscript repository by <a href="http://overstimulate.com/about" title="About Jesse Andrews">Jesse Andrews</a>.
+    </aside>
 
   <h3 class="first seven">Installing Helvetapaper</h3>
-  <p class="first seven"><a class="button" href="http://github.com/thomd/helvetipaper/raw/master/helvetipaper.user.js" title="Install Helvetapaper userscript from Github">&#x2B07;&nbsp;&nbsp;&nbsp;Install Helvetapaper userscript</a></p>
-  <aside class="three">
-    Follow <a href="http://twitter.com/helvetapaper" title="twitter.com/helvetapaper">Helvetapaper on Twitter</a> to be informed on updates.
-    Retweet Helvetapaper!
-  </aside>
+  <p class="first seven">Having Greasemonkey installed, just click on the button given below:<a class="button" href="http://github.com/thomd/helvetipaper/raw/master/helvetipaper.user.js">&#x2B07;&nbsp;&nbsp;&nbsp;Install Helvetapaper userscript</a></p>
 
-  <h3 class="first seven">Uninstalling Helvetapaper</h3>
-  <p class="first seven">To uninstall a Greasemonkey script from your browser, go to the <em>Tools</em> menu, select <em>Greasemonkey</em>, then <em>Manage User Scripts</em>, highlight the script and click <em>Uninstall</em>.</p>
+  <aside class="three">
+    To uninstall a Greasemonkey script from your Firefox browser, go to the <em>Tools</em> menu, select <em>Greasemonkey</em>, then <em>Manage User Scripts</em>, highlight the script and click <em>Uninstall</em>.
+  </aside>
 </section>
 
-<section id="code">
-  
-  <h2>Open Issues</h2>
-  <ul>
-    <li>Dynamic update of the links counter on staring or archiving a link.</li>
+<section id="issues">
+  <h2 class="first seven">Open Issues</h2>
+  <p class="first seven">There are still some issues to improve Helvetapaper:</p>
+  <ul class="first seven">
+    <li>Dynamic update of the page-counter when staring, archiving or deleting a page.</li>
     <li>Display paging within Archive page.</li>
     <li>Show summary below links.</li>
     <li>Add missing CSS for Edit page.</li>
     <li>Add a favicon.</li>
-    <li>Integration of an updater script (only for userscript hosted on userscripts.org).</li>
     <li>Use an external Helvetica typeface via @font-face (I'm not sure about this, because Helvetica should be a web&ndash;safe font.)</li>
     <li>Options for configuration issues.</li>
     <li>Test userscript for GoogelChrome and Webkit's GreaseKit.</li>
   </ul>
 </section>
 
-<footer>
-	<a href="">Helvetica Theme</a> &copy; 2010. By <a href="http://thomd.net">Thomas Duerr</a>. Contact: <a href="mailto:helvetipaper@thomd.net">helvetipaper@thomd.net</a>.
-	<p>Last Update of this Page was at <time datetime="2010-05-26T13:58Z">May 26th, 2010 at 13:58</time>.</p>
+<footer id="footer">
+	<a href="http://github.com/thomd/helvetipaper">Helvetica Theme</a> &copy; 2010. By <a href="http://thomd.github.com">Thomas Duerr</a>. Contact: <a href="mailto:helvetapaper@thomd.net">helvetapaper@thomd.net</a>.
 </footer>
