@@ -39,7 +39,7 @@ body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, code, ol, 
 /* page */
 
 body {
-    font: normal normal 13px/1.615 Helvetica,sans-serif;
+    font: normal normal 16px/1.615 Helvetica,sans-serif;
     background: #EEE url(../images/background.jpg) no-repeat top left;
     max-width: 936px;
 	width: 936px;
@@ -55,9 +55,24 @@ header {
     margin: 1em auto 2em;
 }
 
-a, a:link, a:visited, a:focus, a:hover, a:active  {
+a, a:link, a:visited, a:focus, a:hover, a:active {
     color: #111;
     text-decoration: underline;
+}
+
+a.button {
+    color: #FFF;
+    background: -moz-linear-gradient(-90deg, #0CA6DD, #0770A0) repeat scroll 0 0 transparent;
+    text-decoration: none;
+    padding: 8px 20px 6px;
+    margin-top: 12px;
+    display: inline-block;
+    -moz-border-radius: 20px;
+}
+
+a.button:hover {
+    -moz-box-shadow: 0 0 12px 0 #888;
+    text-decoration: none;
 }
 
 em {
@@ -75,7 +90,7 @@ figure {
 
 figcaption {
     color: #111;
-    font-size: 1em;
+    font-size: 0.8125em;
     margin: -10px 0 0 16px;
     padding-bottom: 2em;
 }
@@ -99,20 +114,20 @@ aside a {
     font-size: 14px;
 }
 
-h1, h2, h3, h4 { 
+h1, h2, h3 { 
     margin-bottom: 5px;
     font-weight:normal; 
 }
  
 h1 {
-    font-size: 2.615em;  /* 34px */
+    font-size: 2.615em;
     line-height:1.18;
     font-weight: bold;
     color: red;
 }
 
 h2 { 
-    font-size: 2em;  /* 26px */
+    font-size: 2em;
     line-height:1.19;    
 }
 
@@ -121,13 +136,10 @@ section h2 {
 }
 
 h3 {
-    font-size: 1.618em; /* 21px */
-    line-height:1.24;   
-}
-
-h4 {
-    font-size: 1.308em; /* 17px */
-    line-height:1.23;
+    font-size: 1.3125em;
+    line-height:1.24;
+    font-weight: bold;
+    margin-top: 36px;   
 }
 
 cite {
