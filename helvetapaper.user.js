@@ -5,8 +5,8 @@
 // @include       http://instapaper.com/*
 // @include       http://*.instapaper.com/*
 // @author        Thomas Duerr
-// @version       0.10
-// @date          2010-03-23
+// @version       0.20
+// @date          2010-05-31
 // @change        created.
 // ==/UserScript==
 
@@ -315,7 +315,7 @@ var attachCSS = function(css){
     //
     // HELVETAPAPER CSS-STYLES
     //
-    // used typographic scale [px]: 6 7 8 9 10 11 [12] [14] [16] 18 21 [24] [36] [48] 60 72 96 120 [144]
+    // used typographic scale [px]: 6 7 8 9 10 11 [12] [14] [16] 18 21 [24] [30] [36] [48] 60 72 96 120 [144]
     // used color scheme: #FFFFFF, #F2F2F2, #E2E2E2, #BBBBBB, #444444, #FF2200
     //
 
@@ -326,8 +326,8 @@ var attachCSS = function(css){
     var css = ''+
     'body{background:#FFF;color:#444;line-height:1.5;font-family:Helvetica,sans-serif;width:100% !important;margin:0;padding:0;border-top:12px solid #F2F2F2;}'+
 
-    'h1#logo{font-weight:bold;font-size:144px;line-height:1;font-family:Helvetica,sans-serif;border:none;letter-spacing:-6px;margin:0;padding:40px 0 40px '+(gap-10)+'px;}'+
-    'h1#logo a{color:#F2F2F2;background:#FFF;text-decoration:none;outline:none;text-shadow:0px 1px 0px #E2E2E2;}'+
+    'h1#logo{font-weight:bold;font-size:120px;line-height:1;font-family:Helvetica,sans-serif;border:none;letter-spacing:-4px;margin:0;padding:20px 0 20px '+(gap-10)+'px;}'+
+    'h1#logo a{color:#F2F2F2;background:#FFF;text-decoration:none;outline:none;text-shadow:0px 1px 0px #BBB;}'+
 
     '#header{margin-bottom:0;border-top:1px solid #E2E2E2;}'+
     '#header div{display:none;}'+
@@ -337,11 +337,11 @@ var attachCSS = function(css){
     '#header div#userdata a:hover{text-decoration:none;background:#F20;color:#FFF;padding:2px 0 2px 8px;margin:-2px 0 -2px -8px;}'+
 
     '#content{overflow:hidden;padding-top:10px;}'+
-    '#content h2#categoryHeader{color:#444;font-weight:bold;font-size:48px;line-height:1.5;font-family:Helvetica,sans-serif;letter-spacing:-2px;margin:0 0 30px '+(gap)+'px;float:none;}'+
+    '#content h2#categoryHeader{color:#444;font-weight:bold;font-size:36px;line-height:1.5;font-family:Helvetica,sans-serif;letter-spacing:-1px;margin:0 0 30px '+(gap)+'px;float:none;}'+
     '#content h2#categoryHeader span,h2#categoryHeader a{display:none}'+
-    '#content h2#categoryHeader sup{-moz-border-radius:10px;background:#BBB;color:#FFF;font-weight:normal;letter-spacing:0;margin-left:-8px;padding:5px 8px 0;}'+
+    '#content h2#categoryHeader sup{-moz-border-radius:10px;background:#BBB;color:#FFF;font-weight:normal;letter-spacing:0;margin-left:-6px;padding:5px 8px 0;}'+
     '#content h2#categoryHeader div{display:inline-block;margin-left:20px;}'+
-    '#content h2#categoryHeader div.categorylink a{color:#F20;display:block;font-size:36px;font-family:Helvetica,sans-serif;letter-spacing:0;height:36px;line-height:1.2;padding:3px 8px;outline:none;}'+
+    '#content h2#categoryHeader div.categorylink a{color:#F20;display:block;font-size:30px;font-family:Helvetica,sans-serif;letter-spacing:0;height:30px;line-height:1.2;padding:3px 8px;outline:none;}'+
     '#content h2#categoryHeader div.categorylink a:hover{text-decoration:none;background:#F20;color:#FFF;}'+
     '#content h2#categoryHeader div.categorylink a sup{background:#FAA;color:#FFF;display:inline-block;margin:-14px -2px 0 3px;}'+
 
@@ -350,7 +350,7 @@ var attachCSS = function(css){
     'div#left_column{padding-bottom:8px !important;}'+
 
     'div#bookmark_list .tableViewCell{-moz-border-radius:0;border:none;border-top:8px solid #FFF;border-bottom:1px solid #E2E2E2;background:#F2F2F2;padding:0;}'+
-    'div#bookmark_list .cornerControls{margin-top:9px;}'+
+    'div#bookmark_list .cornerControls{margin-top:2px;}'+
     'div#bookmark_list .cornerControls .textButton{display:none;}'+
 
     'div#bookmark_list .cornerControls a{font-weight:bold;font-size:16px;line-height:1.1;font-family:Helvetica,sans-serif;color:#F20;width:100px;margin:0;background:transparent;border:none;display:inline-block;padding:5px;text-align:left;color:#F2F2F2 !important;outline:none;}'+
@@ -360,24 +360,24 @@ var attachCSS = function(css){
 
     'div#bookmark_list .titleUrl{font-weight:bold;font-size:24px;line-height:1.1;font-family:Helvetica,sans-serif;color:#BBB;width:none;margin:0 0 20px '+(2*gap)+'px;display:block;}'+
     'div#bookmark_list .titleUrl{display:none;}'+
-    'div#bookmark_list .hostName{font-weight:bold;font-size:24px;line-height:1.2;font-family:Helvetica,sans-serif;color:#BBB;width:none;margin:0 0 16px '+(2*gap)+'px;display:block;}'+
+    'div#bookmark_list .hostName{font-weight:bold;font-size:21px;line-height:1.2;font-family:Helvetica,sans-serif;color:#BBB;width:none;margin:0 0 14px '+(2*gap)+'px;display:block;}'+
     'div#bookmark_list .tableViewCell:hover .cornerControls a{color:#F20 !important;-moz-border-radius:0;}'+
 
     'div#bookmark_list #tableViewCell0 div{color:#444;padding-top:6px;font-size:36px;margin-top:0 !important;}'+
 
     'div#bookmark_list .titleRow{width:100%;margin-left:-'+(gap)+'px;padding:0;position:relative;}'+
     'div#bookmark_list .titleRow div.pagelink{width:none;margin-left:190px;display:inline;}'+
-    'div#bookmark_list .titleRow a.starToggleStarred{font-size:36px;line-height:1.1;font-family:Helvetica,sans-serif;color:#F20;width:none;display:inline;position:absolute;left:'+(2*gap-60)+'px;top:19px;outline:none;}'+
+    'div#bookmark_list .titleRow a.starToggleStarred{font-size:24px;line-height:1.1;font-family:Helvetica,sans-serif;color:#F20;width:none;display:inline;position:absolute;left:'+(2*gap-50)+'px;top:19px;outline:none;}'+
     'div#bookmark_list .titleRow a.starToggleStarred:hover{text-decoration:none;}'+
-    'div#bookmark_list .titleRow a.starToggleUnstarred{font-size:36px;line-height:1.1;font-family:Helvetica,sans-serif;color:#BBB;width:none;display:inline;position:absolute;left:'+(2*gap-60)+'px;top:19px;outline:none;}'+
-    'div#bookmark_list .titleRow a.starToggleProgress{display:inline;position:absolute;left:'+(2*gap-60)+'px;top:19px;outline:none;}'+
+    'div#bookmark_list .titleRow a.starToggleUnstarred{font-size:24px;line-height:1.1;font-family:Helvetica,sans-serif;color:#BBB;width:none;display:inline;position:absolute;left:'+(2*gap-50)+'px;top:19px;outline:none;}'+
+    'div#bookmark_list .titleRow a.starToggleProgress{display:inline;position:absolute;left:'+(2*gap-50)+'px;top:19px;outline:none;}'+
     'div#bookmark_list .titleRow a.starToggleProgress img{display:none;}'+
     'div#bookmark_list .tableViewCell:hover .titleRow a.starToggleUnstarred:hover{text-decoration:none;color:#F20;}'+
-    'div#bookmark_list .titleRow a.tableViewCellTitleLink{font-weight:bold;font-size:24px;line-height:1.2;font-family:Helvetica,sans-serif;color:#444;width:none;display:block;margin:25px 0 0 '+(2*gap)+'px;outline:none;}'+
+    'div#bookmark_list .titleRow a.tableViewCellTitleLink{font-weight:bold;font-size:21px;line-height:1.2;font-family:Helvetica,sans-serif;color:#444;width:none;display:block;margin:21px 0 0 '+(2*gap)+'px;outline:none;}'+
     'div#bookmark_list .titleRow a.tableViewCellTitleLink:hover{text-decoration:none;}'+
 
     'div#bookmark_list .tableViewCell:hover .titleRow a.tableViewCellTitleLink{text-decoration:none;color:#F20;}'+
-    'div#bookmark_list .titleRow a.tableViewCellTitleLink span.new{-moz-border-radius:10px;background:#444;color:#FFF;padding:5px 10px 0;}'+
+    'div#bookmark_list .titleRow a.tableViewCellTitleLink span.new{-moz-border-radius:10px;background:#444;color:#FFF;padding:5px 10px 1px;}'+
     'div#bookmark_list .titleRow div.summary{display:none;}'+
     'div#bookmark_list .secondaryControls{display:none;}'+
 
@@ -399,7 +399,7 @@ var attachCSS = function(css){
     '#feature_column .story .byline{display:none;}'+
     '#feature_column .story h2 a{font-family:Helvetica,sans-serif;font-size:24px;color:#444;}'+
     '#feature_column .story h2 a:hover{text-decoration:none;color:#F20;}'+
-    '#feature_column .story blockquote p{font-family:Helvetica,sans-serif;font-size:16px;color:#444;}'+
+    '#feature_column .story .summary p{font-family:Helvetica,sans-serif;font-size:16px;color:#444;font-style:normal;}'+
     '#feature_column .last-story{border-bottom:none;margin-bottom:0;}'+
     '';
 
@@ -409,3 +409,7 @@ var attachCSS = function(css){
 
 
 
+
+// ChangeLog
+// 2009-03-23 - 0.1   - created
+// 2009-05-31 - 0.2   - made font-size smaller
