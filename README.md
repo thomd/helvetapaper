@@ -3,8 +3,8 @@ What is Helvetapaper?
 
 Helvetapaper is a userscript for [Instapaper](http://instapaper.com).
 
-* find screenshots, some inspirational background and an installation link on [helvetapaper.thomd.net](http://helvetapaper.thomd.net)
-* Helvetapaper on [userscripts.org](http://userscrips.org)
+* Find __Screenshots__ and an __Installation-Link__ on [helvetapaper.thomd.net](http://helvetapaper.thomd.net).
+* You may also install Helvetapaper from [userscripts.org](http://userscrips.org).
 
 
 Features
