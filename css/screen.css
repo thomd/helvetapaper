@@ -170,6 +170,10 @@ ul li {
     margin: 9px 0 14px 24px;
 }
 
+li.fixed {
+    text-decoration: line-through;
+}
+
 em.page-counter-flag {
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
