@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name          Helvetapaper
+// @name          helvetapaper
 // @namespace     http://thomd.net/userscript
 // @description   A minimalistic theme for Instapaper
 // @include       http://instapaper.com/*

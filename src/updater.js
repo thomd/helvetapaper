@@ -125,8 +125,8 @@ var userscriptUpdater = function(){
 
 // initialize updater
 userscriptUpdater.init({
-    scriptId:       "123456789", // insert id of your userscript from userscripts.org!
-    currentVersion: "1.0"        // insert current version number based on versioning scheme: major.minor[.bugfix]
+    scriptId:       "78176",     // insert id of your userscript from userscripts.org!
+    currentVersion: "0.2"        // insert current version number based on versioning scheme: major.minor[.bugfix]
 });
 
 //
