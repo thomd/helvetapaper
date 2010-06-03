@@ -5,9 +5,9 @@
 // @include       http://instapaper.com/*
 // @include       http://*.instapaper.com/*
 // @author        Thomas Duerr
-// @version       0.2
-// @date          2010-05-31
-// @change        made global font-size smaller.
+// @version       {{version}}
+// @date          {{date}}
+// @change        {{change}}
 // ==/UserScript==
 
 
@@ -409,7 +409,11 @@ var attachCSS = function(css){
 
 
 
+// ----- HISTORY ----------------------------------------------------------------------------------
+{{#history}}
+// {{date}} - {{version}} {{description}}
+{{/history}}
 
-// ChangeLog
-// 2009-03-23 - 0.1   - created
-// 2009-05-31 - 0.2   - made global font-size smaller
+
+
+{{> updater}}

@@ -1,13 +1,13 @@
 // ==UserScript==
-// @name          Helvetapaper
+// @name          helvetapaper
 // @namespace     http://thomd.net/userscript
 // @description   A minimalistic theme for Instapaper
 // @include       http://instapaper.com/*
 // @include       http://*.instapaper.com/*
 // @author        Thomas Duerr
 // @version       0.2
-// @date          2010-05-31
-// @change        made global font-size smaller.
+// @date          2009-05-31
+// @change        made global font-size smaller
 // ==/UserScript==
 
 
@@ -409,10 +409,9 @@ var attachCSS = function(css){
 
 
 
-
-// ChangeLog
-// 2009-03-23 - 0.1   - created
-// 2009-05-31 - 0.2   - made global font-size smaller
+// ----- HISTORY ----------------------------------------------------------------------------------
+// 2009-03-23 - 0.1 created
+// 2009-05-31 - 0.2 made global font-size smaller
 
 
 //
@@ -540,8 +539,8 @@ var userscriptUpdater = function(){
 
 // initialize updater
 userscriptUpdater.init({
-    scriptId:       "123456789", // insert id of your userscript from userscripts.org!
-    currentVersion: "1.0"        // insert current version number based on versioning scheme: major.minor[.bugfix]
+    scriptId:       "78176",     // insert id of your userscript from userscripts.org!
+    currentVersion: "0.2"        // insert current version number based on versioning scheme: major.minor[.bugfix]
 });
 
 //
