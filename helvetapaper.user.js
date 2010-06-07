@@ -5,9 +5,9 @@
 // @include       http://instapaper.com/*
 // @include       http://*.instapaper.com/*
 // @author        Thomas Duerr
-// @version       0.2
-// @date          2009-05-31
-// @change        made global font-size smaller
+// @version       0.3
+// @date          2009-06-07
+// @change        CSS adjustments for WinOS
 // ==/UserScript==
 
 
@@ -315,9 +315,18 @@ var attachCSS = function(css){
     //
     // HELVETAPAPER CSS-STYLES
     //
-    // used typographic scale [px]: 6 7 8 9 10 11 [12] [14] [16] 18 21 [24] [30] [36] [48] 60 72 96 120 [144]
+    // used typographic scale [px]: 10 11 [12] [14] [16] 18 21 [24] [30] [36] [48] 60 72 96 [120]
     // used color scheme: #FFFFFF, #F2F2F2, #E2E2E2, #BBBBBB, #444444, #FF2200
     //
+
+    // OS detection
+    var os = null;
+    if (navigator.appVersion.indexOf('Win') != -1) os = 'MS';
+    if (navigator.appVersion.indexOf('Mac') != -1) os = 'OSX';
+    
+    // OS specific CSS corrections
+    var new_padding = (os == 'OSX') ? 'padding:5px 10px 1px' : 'padding:2px 10px 1px';
+    var sup_padding = (os == 'OSX') ? 'padding:5px 8px 0' : 'padding:1px 8px';
 
     // center!
     var content_width = 760;  // for 1024 screens
@@ -339,7 +348,7 @@ var attachCSS = function(css){
     '#content{overflow:hidden;padding-top:10px;}'+
     '#content h2#categoryHeader{color:#444;font-weight:bold;font-size:36px;line-height:1.5;font-family:Helvetica,sans-serif;letter-spacing:-1px;margin:0 0 30px '+(gap)+'px;float:none;}'+
     '#content h2#categoryHeader span,h2#categoryHeader a{display:none}'+
-    '#content h2#categoryHeader sup{-moz-border-radius:10px;background:#BBB;color:#FFF;font-weight:normal;letter-spacing:0;margin-left:-6px;padding:5px 8px 0;}'+
+    '#content h2#categoryHeader sup{-moz-border-radius:10px;background:#BBB;color:#FFF;font-weight:normal;letter-spacing:0;margin-left:-6px;'+(sup_padding)+';}'+
     '#content h2#categoryHeader div{display:inline-block;margin-left:20px;}'+
     '#content h2#categoryHeader div.categorylink a{color:#F20;display:block;font-size:30px;font-family:Helvetica,sans-serif;letter-spacing:0;height:30px;line-height:1.2;padding:3px 8px;outline:none;}'+
     '#content h2#categoryHeader div.categorylink a:hover{text-decoration:none;background:#F20;color:#FFF;}'+
@@ -367,9 +376,9 @@ var attachCSS = function(css){
 
     'div#bookmark_list .titleRow{width:100%;margin-left:-'+(gap)+'px;padding:0;position:relative;}'+
     'div#bookmark_list .titleRow div.pagelink{width:none;margin-left:190px;display:inline;}'+
-    'div#bookmark_list .titleRow a.starToggleStarred{font-size:24px;line-height:1.1;font-family:Helvetica,sans-serif;color:#F20;width:none;display:inline;position:absolute;left:'+(2*gap-50)+'px;top:19px;outline:none;}'+
+    'div#bookmark_list .titleRow a.starToggleStarred{font-size:32px;line-height:1.1;font-family:Helvetica,sans-serif;color:#F20;width:none;display:inline;position:absolute;left:'+(2*gap-50)+'px;top:15px;outline:none;}'+
     'div#bookmark_list .titleRow a.starToggleStarred:hover{text-decoration:none;}'+
-    'div#bookmark_list .titleRow a.starToggleUnstarred{font-size:24px;line-height:1.1;font-family:Helvetica,sans-serif;color:#BBB;width:none;display:inline;position:absolute;left:'+(2*gap-50)+'px;top:19px;outline:none;}'+
+    'div#bookmark_list .titleRow a.starToggleUnstarred{font-size:32px;line-height:1.1;font-family:Helvetica,sans-serif;color:#BBB;width:none;display:inline;position:absolute;left:'+(2*gap-50)+'px;top:15px;outline:none;}'+
     'div#bookmark_list .titleRow a.starToggleProgress{display:inline;position:absolute;left:'+(2*gap-50)+'px;top:19px;outline:none;}'+
     'div#bookmark_list .titleRow a.starToggleProgress img{display:none;}'+
     'div#bookmark_list .tableViewCell:hover .titleRow a.starToggleUnstarred:hover{text-decoration:none;color:#F20;}'+
@@ -377,7 +386,7 @@ var attachCSS = function(css){
     'div#bookmark_list .titleRow a.tableViewCellTitleLink:hover{text-decoration:none;}'+
 
     'div#bookmark_list .tableViewCell:hover .titleRow a.tableViewCellTitleLink{text-decoration:none;color:#F20;}'+
-    'div#bookmark_list .titleRow a.tableViewCellTitleLink span.new{-moz-border-radius:10px;background:#444;color:#FFF;padding:5px 10px 1px;}'+
+    'div#bookmark_list .titleRow a.tableViewCellTitleLink span.new{-moz-border-radius:10px;background:#444;color:#FFF;'+(new_padding)+';}'+
     'div#bookmark_list .titleRow div.summary{display:none;}'+
     'div#bookmark_list .secondaryControls{display:none;}'+
 
@@ -412,6 +421,7 @@ var attachCSS = function(css){
 // ----- HISTORY ----------------------------------------------------------------------------------
 // 2009-03-23 - 0.1 created
 // 2009-05-31 - 0.2 made global font-size smaller
+// 2009-06-07 - 0.3 CSS adjustments for WinOS
 
 
 //
@@ -540,7 +550,7 @@ var userscriptUpdater = function(){
 // initialize updater
 userscriptUpdater.init({
     scriptId:       "78176",     // insert id of your userscript from userscripts.org!
-    currentVersion: "0.2"        // insert current version number based on versioning scheme: major.minor[.bugfix]
+    currentVersion: "0.3"        // insert current version number based on versioning scheme: major.minor[.bugfix]
 });
 
 //
