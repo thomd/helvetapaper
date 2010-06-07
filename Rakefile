@@ -2,61 +2,36 @@ require "rubygems"
 require "rake"
 require "Mustache"
 require "yaml"
+require "lib/helvetapaper.rb"
 
 CONFIG = YAML::load_file("history.yml")
 
-class Helvetapaper < Mustache
-  self.template_path = "src"
-  self.template_extension = "js"
+task :default => "userscript:helvetapaper"
 
-  attr_accessor :history
-
-  def initialize
-    @history = CONFIG["history"].map! { |h| hashify(h) }
-  end
-
-  def version
-    @history.last['version']
-  end
-
-  def date
-    @history.last['date']
-  end
-
-  def change
-    @history.last['description']
-  end
-
-  def id
-    CONFIG["id"]
-  end
-  
-  def history
-    @history
-  end
-
-  private
-
-  def hashify(event)
-    hash = Hash.new
-    if event =~ /^(\d+-\d+-\d+) (\d.\d) (.+)$/
-      hash['date'] = $1
-      hash['version'] = $2
-      hash['description'] = $3
-    end
-    hash
-  end
-end
-
-
-
-task :default => "generate:helvetapaper"
-
-namespace :generate do
+namespace :userscript do
   desc "generate Helvetapaper userscript"
   task :helvetapaper do
     target = File.new(CONFIG["userscript"], "w")
     target.puts Helvetapaper.render
     target.close
+  end
+
+  desc "Check javascript with JSLint"
+  task :jslint do
+    failed_files = []
+    classpath = File.join(File.dirname(__FILE__), "lib", "js.jar")
+    jslint_path = File.join("lib", "jslint.js")
+    Dir['src/*.js'].each do |fname|
+      cmd = "java -cp #{classpath} org.mozilla.javascript.tools.shell.Main #{jslint_path} #{fname}"
+      results = %x{#{cmd}}
+      unless results =~ /^jslint: No problems found in/
+        puts "#{fname}:"
+        puts results
+        failed_files << fname
+      end
+    end
+    if failed_files.size > 0
+      exit 1
+    end
   end
 end
