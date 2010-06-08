@@ -40,7 +40,7 @@ body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, code, ol, 
 
 body {
     font: normal normal 16px/1.615 Helvetica,sans-serif;
-    background: #EEE url(../images/background.jpg) no-repeat top left;
+    background: #EEE url(../images/noise.png) repeat top left;
     max-width: 936px;
 	width: 936px;
 	margin: 2.615em auto;
@@ -401,17 +401,17 @@ code {
 }
 
 #footer {
-    color: #666;
-    font-size: 0.8125em;
+    color: #333;
+    font-size: 12px;
     margin: 6em 0 3em;
     padding: 1em 0 0;
     border-top: 4px solid red;
 }
 
 #footer a {
-    color: #666;
+    color: #333;
     font-weight: normal;
-    font-size: 1em;
+    font-size: 12px;
 }
 
 #issues ul {
