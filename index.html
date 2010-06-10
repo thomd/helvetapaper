@@ -28,6 +28,13 @@ title: Helvetapaper - a minimalistic theme for Instapaper
     <li><em class="page-counter-flag">page-counter flags</em> on each top-category link (Unread, Starred and Archive).</li>
     <li><em class="new-page-flag">new-page flag</em> on saved pages from within the last three days.</li>
   </ul>
+  <aside class="three">
+    Where is this information from?
+    <ul>
+      <li>Temporary hidden <code>iframes</code> are used to count pages of other categories.</li>
+      <li>Instapapers RSS Feed is used for informations regarding date/time.</li>
+    </ul>
+  </aside>
 </section>
 
 <section id="identity">
@@ -53,78 +60,35 @@ title: Helvetapaper - a minimalistic theme for Instapaper
     </ol>
     <figcaption><em>Fig.3</em> Helvetapaper Color Scheme</figcaption>
   </figure>
-
-<!--
-  <figure id="fig-4" class="first seven">
-    <ol class="typoggraphic-scale">
-      <li class="size-6">Aa</li>
-      <li class="size-7">Aa</li>
-      <li class="size-8">Aa</li>
-      <li class="size-9">Aa</li>
-      <li class="size-10">Aa</li>
-      <li class="size-11">Aa</li>
-      <li class="size-12 selected">Aa</li>
-      <li class="size-14 selected">Aa</li>
-      <li class="size-16 selected">Aa</li>
-      <li class="size-18">Aa</li>
-      <li class="size-21">Aa</li>
-      <li class="size-24 selected">Aa</li>
-      <li class="size-36 selected">Aa</li>
-      <li class="size-48 selected">Aa</li>
-      <li class="size-60">Aa</li>
-      <li class="size-72">Aa</li>
-    </ol>
-    <ol class="typoggraphic-unit">
-      <li class="unit-6">6</li>
-      <li class="unit-7">7</li>
-      <li class="unit-8">8</li>
-      <li class="unit-9">9</li>
-      <li class="unit-10">10</li>
-      <li class="unit-11">11</li>
-      <li class="unit-12">12</li>
-      <li class="unit-14">14</li>
-      <li class="unit-16">16</li>
-      <li class="unit-18">18</li>
-      <li class="unit-21">21</li>
-      <li class="unit-24">24</li>
-      <li class="unit-36">36</li>
-      <li class="unit-48">48</li>
-      <li class="unit-60">60</li>
-      <li class="unit-72">72</li>
-    </ol>
-    <figcaption><em>Fig.4</em> Helvetapaper Typographic Scale [in <em>px</em>]</figcaption>
-  </figure>
--->
 </section>
 
 <section id="usage">
   <h2 class="first seven">Usage</h2>
-  <p class="first seven">In order to theme your personal Instapaper with Helvetapaper, you need to have <a href="http://www.greasespot.net/" title="The weblog about Greasemonkey">Greasemonkey</a> installed.<br />Greasemonkey is a <em>Firefox</em> <a href="https://addons.mozilla.org/de/firefox/addon/748/" title="Greasemonkey Firefox Add-on">Add-on</a> that allows us to <em>control the way we use the web</em>.</p>
-    <aside class="three">
-      Also visit <a href="http://userscripts.org/scripts/show/78176" title="Helvetapaper on userscripts.org">Userscripts.org</a>, a userscript repository by <a href="http://overstimulate.com/about" title="About Jesse Andrews">Jesse Andrews</a>.
-    </aside>
+  <p class="first seven">In order to theme your personal Instapaper with Helvetapaper, you need to have <a href="http://www.greasespot.net/" title="The weblog about Greasemonkey">Greasemonkey</a> installed.<br />Greasemonkey is a <em>Firefox</em> <a href="https://addons.mozilla.org/de/firefox/addon/748/" title="Greasemonkey Firefox Add-on">Add-on</a> to <em>control the way we use the web</em>.</p>
 
   <h3 class="first seven">Installing Helvetapaper</h3>
-  <p class="first seven">Having Greasemonkey installed, just click on the button below: <br /><br /><a class="button" href="http://userscripts.org/scripts/source/78176.user.js">&#x2B07;&nbsp;&nbsp;&nbsp;Install Helvetapaper from userscripts.org</a></p>
+  <p class="first seven">Having Greasemonkey installed, just click on the button below.<br /><br /><a class="button" href="http://userscripts.org/scripts/source/78176.user.js">&#x2B07;&nbsp;&nbsp;Install Helvetapaper</a></p>
 
   <aside class="three">
-    To uninstall a Greasemonkey script from your Firefox browser, go to the <em>Tools</em> menu, select <em>Greasemonkey</em>, then <em>Manage User Scripts</em>, highlight the script and click <em>Uninstall</em>.
+    <p>This installation link will install Helvetapaper from <a href="http://userscripts.org/thomd" title="my other userscrips on userscripts.org">Userscripts.org</a>, a userscript repository by <a href="http://overstimulate.com/about" title="About Jesse Andrews">Jesse Andrews</a>.</p>
+    <p>Helvetapaper contains also an <a href="http://userscripts.org/scripts/show/45266" title="easy userscript updater snippet">userscript updater</a> which checks once a week for updates and will notify you about a new version of Helvetapaper.</p>
   </aside>
 </section>
 
 <section id="issues">
   <h2 class="first seven">Open Issues</h2>
-  <p class="first seven">There are still some issues to improve Helvetapaper:</p>
+  <p class="first seven">There are still some <a href="http://github.com/thomd/helvetapaper/issues">issues</a> to improve Helvetapaper:</p>
   <ul class="first seven">
-    <li>Dynamic update of the page-counter when staring, archiving or deleting a page.</li>
-    <li>Display paging within Archive page.</li>
-    <li>Show summary below links.</li>
-    <li>Add missing CSS for Edit page.</li>
+    <li>Instant update of the page-counter when staring, archiving or deleting a page.</li>
+    <li>Display paging within Archive page / count all pages within the Archive.</li>
+    <li>Show summary below links. (maybe)</li>
+    <li>Add missing Stylesheet for Edit page.</li>
     <li>Add a favicon.</li>
-    <li>Use an external Helvetica typeface via @font-face (I'm not sure about this, because Helvetica should be a web&ndash;safe font.)</li>
+    <li>Use an external Helvetica typeface via @font-face or a similar technique (I'm not sure about this, because font files needs to be hosted somewhere.)</li>
     <li>Options for configuration issues.</li>
-    <li>Test userscript for GoogelChrome and Webkit's GreaseKit.</li>
+    <li>Test userscript for Google Chrome (<a href="http://code.google.com/p/tampermonkey/">tampermonkey</a>) and Webkit's <a href="http://code.google.com/p/greasekit/">greasekit</a>.</li>
     <li class="fixed">Integrate an updater script.</li>
+    <li>Integrate Text feature (like Safari 5 Reader?)</li>
   </ul>
 </section>
 

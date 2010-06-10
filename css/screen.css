@@ -67,13 +67,14 @@ a.button {
     filter:  progid:DXImageTransform.Microsoft.gradient(startColorStr='#FF4C2F', EndColorStr='#AF1900');
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#FF4C2F', EndColorStr='#AF1900')";
     text-decoration: none;
-    padding: 8px 20px 6px;
+    padding: 4px 20px 2px;
     margin-top: 12px;
     display: inline-block;
-    -moz-border-radius: 20px;
-    -webkit-border-radius: 20px;
-    border-radius: 20px;
-    
+    -moz-border-radius: 30px;
+    -webkit-border-radius: 30px;
+    border-radius: 30px;
+    font-size: 24px;
+    text-shadow: 0 -1px 0 #000;
 }
 
 a.button:hover {
@@ -115,11 +116,26 @@ aside {
     border-top: 4px solid red;
     margin-top: 0;
     padding: 6px 0 36px;
-    font-size: 14px;
+    font-size: 13px;
 }
 
-aside a { 
+aside a, aside p, aside li { 
+    font-size: 13px;
+}
+
+aside p { 
+    padding-top: 0;
+}
+
+aside ul li {
+    margin: 7px 0 10px 13px;
+}
+
+aside code {
+    background: transparent;
     font-size: 14px;
+    margin: 0;
+    padding: 0;
 }
 
 h1, h2, h3 { 
@@ -208,6 +224,12 @@ code {
 .color-scheme {
     display: inline-block;
     margin: 0 0 20px;
+}
+
+#identity code, #identity .color-scheme {
+    -moz-box-shadow: 0 0 10px 1px #CCC;
+    -webkit-box-shadow: 0 0 10px 1px #CCC;
+    box-shadow: 0 0 10px 1px #CCC;
 }
 
 .color-scheme li {
@@ -406,6 +428,7 @@ code {
     margin: 6em 0 3em;
     padding: 1em 0 0;
     border-top: 4px solid red;
+    height: 60px;
 }
 
 #footer a {
@@ -421,7 +444,11 @@ code {
 #issues ul li {
     margin: 2px 0 0px 24px;
     list-style: disc;
-    font-size: 0.875em;
+    font-size: 14px;
+}
+
+#issues ul li a {
+    font-size: 14px;
 }
 
 
