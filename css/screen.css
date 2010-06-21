@@ -62,12 +62,12 @@ a, a:link, a:visited, a:focus, a:hover, a:active {
 
 a.button {
     color: #FFF;
-    background: -moz-linear-gradient(-90deg, #FF4C2F, #AF1900) repeat scroll 0 0 transparent;
-    background: -webkit-gradient(linear,left top,left bottom,color-stop(0, #FF4C2F),color-stop(1, #AF1900));
+    background: url(../images/download.png) 22px 10px no-repeat, -moz-linear-gradient(-90deg, #FF4C2F, #AF1900);
+    background: url(../images/download.png) 22px 10px no-repeat, -webkit-gradient(linear,left top,left bottom,color-stop(0, #FF4C2F),color-stop(1, #AF1900));
     filter:  progid:DXImageTransform.Microsoft.gradient(startColorStr='#FF4C2F', EndColorStr='#AF1900');
     -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#FF4C2F', EndColorStr='#AF1900')";
     text-decoration: none;
-    padding: 4px 20px 2px;
+    padding: 4px 20px 2px 60px;
     margin-top: 12px;
     display: inline-block;
     -moz-border-radius: 30px;
