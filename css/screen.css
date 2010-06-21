@@ -1,14 +1,14 @@
 
 /* CSS reset */
-
 body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, code, ol, ul, li {
     margin: 0;
     padding: 0;
     border: 0;
 }
 
+/* Fixes new HTML5 elements */
 header, section, footer, aside, figure, figcaption {
-	display: block; /* Fixes new HTML5 elements */
+	display: block;
 }
 
 header, section, footer {
@@ -24,7 +24,6 @@ ul, ol {
 
 
 /* Typographic reset */
- 
 body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, code, ol, ul, li, aside, figcaption {
     font-weight: inherit;
     font-style: inherit;
@@ -33,11 +32,7 @@ body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, code, ol, 
     vertical-align: baseline;
 }
 
-
-
-
 /* page */
-
 body {
     font: normal normal 16px/1.615 Helvetica,sans-serif;
     background: #EEE url(../images/noise.png) repeat top left;
@@ -94,29 +89,41 @@ img.screenshot {
 }
 
 figure {
-    margin-top: 2em;
+    margin: 32px 0 0 0;
+	width: 648px; 
+	display: block; 
+	float: left; 
+	clear: left;
 }
 
 figcaption {
     color: #111;
-    font-size: 0.8125em;
+    font-size: 13px;
     margin: -10px 0 0 16px;
     padding-bottom: 2em;
 }
 
 p, aside { 
-    padding: 0 0 0.8125em 0; 
+    padding: 0 0 13px 0; 
 }
 
 p { 
+	margin-left: 0;	
     padding-top: 10px;
+	width: 648px; 
+	display: block; 
+	float: left; 
+	clear: left;
 }
 
 aside { 
     border-top: 4px solid red;
-    margin-top: 0;
+	margin: 0 0 0 24px;
     padding: 6px 0 36px;
     font-size: 13px;
+	width: 264px; 
+	display: block; 
+	float: left; 
 }
 
 aside a, aside p, aside li { 
@@ -144,32 +151,33 @@ h1, h2, h3 {
 }
  
 h1 {
-    font-size: 2.615em;
-    line-height:1.18;
+    font-size: 42px;
+    line-height: 1.18;
     font-weight: bold;
     color: red;
 }
 
 h2 { 
-    font-size: 2em;
-    line-height:1.19;    
+    font-size: 32px;
+    line-height: 1.19;    
 }
 
 section h2 {
-    margin-top: 3em;
+    margin-top: 96px;
 }
 
 h3 {
-    font-size: 1.3125em;
-    line-height:1.24;
+    font-size: 21px;
+    line-height: 1.24;
     font-weight: bold;
-    margin-top: 36px;   
+    margin: 36px 0 0 0;   
+	width: 648px; 
+	display: block; 
+	float: left; 
+	clear: left;
 }
 
 cite {
-    /*  „  “ ‚  ‘       */
-    /*quotes:  "\201E" "\201C" "\201A " "\2018";*/
-    /*  “  ” ‘  ’       */
     quotes: "\201C" "\201D" "\2018" "\2019";
     font-style: italic;
 }
@@ -219,8 +227,7 @@ code {
     margin-bottom: 20px;
 }
 
-/* color scheme & typographic scale */
-
+/* color scheme */
 .color-scheme {
     display: inline-block;
     margin: 0 0 20px;
@@ -236,7 +243,7 @@ code {
     font-family: "Courier New",monospace;
     float: left;
     padding: 6px 14px 3px;
-    font-size: 0.8125em;
+    font-size: 13px;
 }
 
 .color-scheme li.color-ffffff {
@@ -265,163 +272,6 @@ code {
     background: #FF2200;
 }
 
-.typoggraphic-scale {
-    border-bottom: 1px solid #111;;
-}
-
-.typoggraphic-unit {
-    margin: 0 0 20px;
-}
-
-.typoggraphic-scale li {
-    display: inline-block;
-    line-height: 1;
-    color: #DDD;
-    font-weight: bold;
-    margin-right: 6px;
-}
-
-.typoggraphic-scale li.selected {
-    color: #111;
-}
-
-.typoggraphic-scale li.size-6 {
-    font-size: 6px;
-}
-
-.typoggraphic-scale li.size-7 {
-    font-size: 7px;
-}
-
-.typoggraphic-scale li.size-8 {
-    font-size: 8px;
-}
-
-.typoggraphic-scale li.size-9 {
-    font-size: 9px;
-}
-
-.typoggraphic-scale li.size-10 {
-    font-size: 10px;
-}
-
-.typoggraphic-scale li.size-11 {
-    font-size: 11px;
-}
-
-.typoggraphic-scale li.size-12 {
-    font-size: 12px;
-}
-
-.typoggraphic-scale li.size-14 {
-    font-size: 14px;
-}
-
-.typoggraphic-scale li.size-16 {
-    font-size: 16px;
-}
-
-.typoggraphic-scale li.size-18 {
-    font-size: 18px;
-}
-
-.typoggraphic-scale li.size-21 {
-    font-size: 21px;
-}
-
-.typoggraphic-scale li.size-24 {
-    font-size: 24px;
-}
-
-.typoggraphic-scale li.size-36 {
-    font-size: 36px;
-}
-
-.typoggraphic-scale li.size-48 {
-    font-size: 48px;
-}
-
-.typoggraphic-scale li.size-60 {
-    font-size: 60px;
-}
-
-.typoggraphic-scale li.size-72 {
-    font-size: 72px;
-}
-
-.typoggraphic-unit li {
-    display: inline-block;
-    line-height: 1;
-    color: #444;
-    font-weight: normal;
-    margin-right: 6px;
-    font-size: 0.8125em;
-}
-
-.typoggraphic-unit li.unit-6 {
-    margin-right: 8px;
-}
-
-.typoggraphic-unit li.unit-7 {
-    margin-right: 8px;
-}
-
-.typoggraphic-unit li.unit-8 {
-    margin-right: 9px;
-}
-
-.typoggraphic-unit li.unit-9 {
-    margin-right: 7px;
-}
-
-.typoggraphic-unit li.unit-10 {
-    margin-right: 6px;
-}
-
-.typoggraphic-unit li.unit-11 {
-    margin-right: 6px;
-}
-
-.typoggraphic-unit li.unit-12 {
-    margin-right: 9px;
-}
-
-.typoggraphic-unit li.unit-14 {
-    margin-right: 10px;
-}
-
-.typoggraphic-unit li.unit-16 {
-    margin-right: 13px;
-}
-
-.typoggraphic-unit li.unit-18 {
-    margin-right: 20px;
-}
-
-.typoggraphic-unit li.unit-21 {
-    margin-right: 20px;
-}
-
-.typoggraphic-unit li.unit-24 {
-    margin-right: 26px;
-}
-
-.typoggraphic-unit li.unit-36 {
-    margin-right: 44px;
-}
-
-.typoggraphic-unit li.unit-48 {
-    margin-right: 62px;
-}
-
-.typoggraphic-unit li.unit-60 {
-    margin-right: 76px;
-}
-
-.typoggraphic-unit li.unit-72 {
-    margin-right: 0;
-}
-
 #footer {
     color: #333;
     font-size: 12px;
@@ -437,8 +287,12 @@ code {
     font-size: 12px;
 }
 
-#issues ul {
-    
+#issues ul, .features {
+	margin-left: 0;	
+	width: 648px; 
+	display: block; 
+	float: left; 
+	clear: left;
 }
 
 #issues ul li {
@@ -451,96 +305,6 @@ code {
     font-size: 14px;
 }
 
-
-
-/* Columns Grid */
-
-.ten {
-	width: 936px;
+abbr {
+    font-size: 92%;
 }
-.nine {
-	width: 840px; 
-	display: block; 
-	float: left; 
-	margin-left: 24px;
-}
-.eight {
-	width: 744px; display: block; float: left; margin-left: 24px;
-}
-.seven {
-	width: 648px; display: block; float: left; margin-left: 24px;
-}
-.six {
-	width: 552px; display: block; float: left; margin-left: 24px;
-}
-.five {
-	width: 456px; display: block; float: left; margin-left: 24px;
-}
-.four {
-	width: 360px; display: block; float: left; margin-left: 24px;
-}
-.three {
-	width: 264px; display: block; float: left; margin-left: 24px;
-}
-.two {
-	width: 168px; display: block; float: left; margin-left: 24px;
-}
-.one {
-	width: 72px;  display: block; float: left; margin-left: 24px;
-}
-
-
-/* Leftmost column in each row */
-
-.first, ten {
-	margin-left: 0;	clear: left;
-}
-
-
-/* Column offsets */
-
-.off-nine {
-	margin-left: 864px;
-}
-.off-eight {
-	margin-left: 768px;
-}
-.off-seven {
-	margin-left: 672px;
-}
-.off-six {
-	margin-left: 576px;
-}
-.off-five {
-	margin-left: 480px;
-}	
-.off-four {
-	margin-left: 384px;
-}
-.off-three {
-	margin-left: 288px;
-}
-.off-two {
-	margin-left: 192px;
-}
-.off-one {
-	margin-left: 96px;
-}
-
-
-/* Pins element to the left or right corner */
-
-.pin-left  {
-	position: absolute; top: 0; margin-left: 0; left: 0;
-}
-.pin-right {
-	position: absolute; top: 0; margin-left: 0; right: 0;
-}
-
-
-/* Combine with a column class */
-
-.hang {
-	float: right;
-}
-
