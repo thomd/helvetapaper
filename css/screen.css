@@ -309,3 +309,10 @@ code {
 abbr {
     font-size: 92%;
 }
+
+#tweetmeme {
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    margin-left: 377px;
+}
