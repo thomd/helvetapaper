@@ -311,8 +311,5 @@ abbr {
 }
 
 #tweetmeme {
-    position: absolute;
-    top: 120px;
-    left: 50%;
-    margin-left: 377px;
+    float: left;
 }
