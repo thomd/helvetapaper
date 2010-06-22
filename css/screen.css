@@ -1,3 +1,8 @@
+/* 
+Title:	screen styles 
+Author:	Thomas Duerr
+*/
+
 
 /* CSS reset */
 body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, code, ol, ul, li {
@@ -126,12 +131,8 @@ aside {
 	float: left; 
 }
 
-aside a, aside p, aside li { 
+aside a, aside li { 
     font-size: 13px;
-}
-
-aside p { 
-    padding-top: 0;
 }
 
 aside ul li {
