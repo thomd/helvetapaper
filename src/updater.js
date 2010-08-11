@@ -3,6 +3,10 @@
 //
 // ---------- userscript updater --------------------------------------------------------------------------------------
 //
+
+// run updater only in browsers suporting GM_xmlhttpRequest, GM_setValue, GM_getValue and GM_addStyle
+if(typeof GM_xmlhttpRequest == "undefined" || typeof GM_setValue == "undefined" || typeof GM_getValue == "undefined" || typeof GM_addStyle == "undefined") return;
+
 var userscriptUpdater = function(){
 
     var css = "div.greasemonkey_updater{padding:10px 0 10px 15px;background:#F2F2F2;}" +
