@@ -68,17 +68,17 @@ var _GM_addStyle = function(css){
     //
     // SOME HELPER NODES
     //
-    var body = $x('//body')[0];
-    var header = $x('//*[@id="header"]')[0];
-    var logo = $x('//*[@id="logo"]')[0];
-    var title = $x('//*[@id="logo"]/a')[0];
-    var navigation = $x('//*[@id="categoryHeader"]')[0];
+    var body =              $x('//body')[0];
+    var header =            $x('//*[@id="header"]')[0];
+    var logo =              $x('//*[@id="logo"]')[0];
+    var title =             $x('//*[@id="logo"]/a')[0];
+    var navigation =        $x('//*[@id="categoryHeader"]')[0];
     var currentpage_count = $x('//*[@id="bookmark_list"]//div[@class="titleRow"]').length;
-    var username = $x('//div[@id="userpanel"]/b/text()')[0].nodeValue;
-    var logout_link = $x('//div[@id="userpanel"]/a')[2];
-    var nav_links = $x('//h2[@id="categoryHeader"]/a');
-    var rss = $x('//link[@rel="alternate"]')[0];
-    var footer = $x('//div[@id="footer"]/div')[0];
+    var username =          $x('//div[@id="userpanel"]/b/text()')[0].nodeValue;
+    var logout_link =       $x('//div[@id="userpanel"]/a')[2];
+    var nav_links =         $x('//h2[@id="categoryHeader"]/a');
+    var rss =               $x('//link[@rel="alternate"]')[0];
+    var footer =            $x('//div[@id="footer"]/div')[0];
 
 
 
