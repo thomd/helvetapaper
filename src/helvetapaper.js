@@ -40,8 +40,8 @@ $ix = function(p, document_object, context){
 //
 // css helper
 //
-var attachCSS = function(css){
-    if(GM_addStyle){
+var _GM_addStyle = function(css){
+    if(typeof GM_addStyle != "undefined"){
         GM_addStyle(css);
     } else {
 		var head = document.getElementsByTagName("head")[0];
@@ -311,7 +311,7 @@ var attachCSS = function(css){
     //
     // HELVETAPAPER CSS-STYLES
     //
-    // used typographic scale [px]: 10 11 [12] [14] [16] 18 21 [24] [30] [36] [48] 60 72 96 [120]
+    // used typographic scale [px]: 12, 14, 16, 24, 30, 36, 48, 120
     // used color scheme: #FFFFFF, #F2F2F2, #E2E2E2, #BBBBBB, #444444, #FF2200
     //
 
@@ -344,7 +344,7 @@ var attachCSS = function(css){
     '#content{overflow:hidden;padding-top:10px;}'+
     '#content h2#categoryHeader{color:#444;font-weight:bold;font-size:36px;line-height:1.5;font-family:Helvetica,sans-serif;letter-spacing:-1px;margin:0 0 30px '+(gap)+'px;float:none;}'+
     '#content h2#categoryHeader span,h2#categoryHeader a{display:none}'+
-    '#content h2#categoryHeader sup{-moz-border-radius:10px;background:#BBB;color:#FFF;font-weight:normal;letter-spacing:0;margin-left:-6px;'+(sup_padding)+';}'+
+    '#content h2#categoryHeader sup{-moz-border-radius:10px;-webkit-border-radius:10px;background:#BBB;color:#FFF;font-weight:normal;letter-spacing:0;margin-left:-6px;'+(sup_padding)+';}'+
     '#content h2#categoryHeader div{display:inline-block;margin-left:20px;}'+
     '#content h2#categoryHeader div.categorylink a{color:#F20;display:block;font-size:30px;font-family:Helvetica,sans-serif;letter-spacing:0;height:30px;line-height:1.2;padding:3px 8px;outline:none;}'+
     '#content h2#categoryHeader div.categorylink a:hover{text-decoration:none;background:#F20;color:#FFF;}'+
@@ -354,7 +354,7 @@ var attachCSS = function(css){
     'div#left_column,div#bookmark_list{width:100%;}'+
     'div#left_column{padding-bottom:8px !important;}'+
 
-    'div#bookmark_list .tableViewCell{-moz-border-radius:0;border:none;border-top:8px solid #FFF;border-bottom:1px solid #E2E2E2;background:#F2F2F2;padding:0;}'+
+    'div#bookmark_list .tableViewCell{-moz-border-radius:0;-webkit-border-radius:0;border:none;border-top:8px solid #FFF;border-bottom:1px solid #E2E2E2;background:#F2F2F2;padding:0;}'+
     'div#bookmark_list .cornerControls{margin-top:2px;}'+
     'div#bookmark_list .cornerControls .textButton{display:none;}'+
 
@@ -366,7 +366,7 @@ var attachCSS = function(css){
     'div#bookmark_list .titleUrl{font-weight:bold;font-size:24px;line-height:1.1;font-family:Helvetica,sans-serif;color:#BBB;width:none;margin:0 0 20px '+(2*gap)+'px;display:block;}'+
     'div#bookmark_list .titleUrl{display:none;}'+
     'div#bookmark_list .hostName{font-weight:bold;font-size:21px;line-height:1.2;font-family:Helvetica,sans-serif;color:#BBB;width:none;margin:0 0 14px '+(2*gap)+'px;display:block;}'+
-    'div#bookmark_list .tableViewCell:hover .cornerControls a{color:#F20 !important;-moz-border-radius:0;}'+
+    'div#bookmark_list .tableViewCell:hover .cornerControls a{color:#F20 !important;-moz-border-radius:0;-webkit-border-radius:0;}'+
 
     'div#bookmark_list #tableViewCell0 div{color:#444;padding-top:6px;font-size:36px;margin-top:0 !important;}'+
 
@@ -382,7 +382,7 @@ var attachCSS = function(css){
     'div#bookmark_list .titleRow a.tableViewCellTitleLink:hover{text-decoration:none;}'+
 
     'div#bookmark_list .tableViewCell:hover .titleRow a.tableViewCellTitleLink{text-decoration:none;color:#F20;}'+
-    'div#bookmark_list .titleRow a.tableViewCellTitleLink span.new{-moz-border-radius:10px;background:#444;color:#FFF;'+(new_padding)+';}'+
+    'div#bookmark_list .titleRow a.tableViewCellTitleLink span.new{-moz-border-radius:10px;-webkit-border-radius:10px;background:#444;color:#FFF;'+(new_padding)+';}'+
     'div#bookmark_list .titleRow div.summary{display:none;}'+
     'div#bookmark_list .secondaryControls{display:none;}'+
 
@@ -408,7 +408,7 @@ var attachCSS = function(css){
     '#feature_column .last-story{border-bottom:none;margin-bottom:0;}'+
     '';
 
-    attachCSS(css);
+    _GM_addStyle(css);
 
 })();
 
