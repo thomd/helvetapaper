@@ -53,6 +53,29 @@ var _GM_addStyle = function(css){
 }
 
 
+//
+// ajax helper (GreaseKit and hence Fluid.app does not support GM_xmlhttpRequest)
+//
+var _GM_xmlhttpRequest = function(options){
+    if(typeof GM_xmlhttpRequest != "undefined"){
+        GM_xmlhttpRequest(options);
+    } else {
+        // TODO: implement error handling
+        var http = new XMLHttpRequest();
+        http.open(options.method.toUpperCase() || "GET", options.url, true);
+        for(var header in options.headers){
+            http.setRequestHeader(header, options.headers[header]);
+        }
+        http.onreadystatechange = function(){
+            if (http.readyState == 4 && http.status == 200){
+                options.onload(http);
+            }
+        }
+        http.send();        
+    }
+}
+
+
 
 
 //
@@ -264,10 +287,10 @@ var _GM_addStyle = function(css){
 
     // get RSS feed (don't request from within an iframe)
     if(rss && top == window){
-        GM_xmlhttpRequest({
+        _GM_xmlhttpRequest({
              method: "GET",
                 url: rss.getAttribute("href"),
-            headers: {"User-Agent": "Mozilla/5.0 (compatible) Greasemonkey", "Accept": "text/xml"},
+            headers: {"Accept": "text/xml"},
              onload: parseRssFeed
         });
     }
