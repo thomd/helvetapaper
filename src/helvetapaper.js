@@ -138,56 +138,54 @@ var attachCSS = function(css){
     // CHANGE STRUCTURE OF EVERY PAGE-LINK
     //
     var links = $x('//div[@id="bookmark_list"]//div[starts-with(@id,"tableViewCell")]');
-    if(links.length > 0){
-        for(i in links){
-            var link = links[i];
+    for(var i = 0, l = links.length; i < l; i++){
+        var link = links[i];
 
-            // page URL
-            var page = $x('.//*[@class="titleRow"]/a', link)[0];
-            if(page == undefined) continue;
-            var href = page.getAttribute("href");
-            var url = document.createElement("div");
-            url.setAttribute("class", "titleUrl");
-            url.appendChild(document.createTextNode(href));
-            page.parentNode.insertBefore(url, page.nextSibling);
+        // page URL
+        var page = $x('.//*[@class="titleRow"]/a', link)[0];
+        if(page == undefined) continue;
+        var href = page.getAttribute("href");
+        var url = document.createElement("div");
+        url.setAttribute("class", "titleUrl");
+        url.appendChild(document.createTextNode(href));
+        page.parentNode.insertBefore(url, page.nextSibling);
 
-            // host
-            var hostname = $x('.//span[@class="host"]/text()', link)[0].nodeValue;
-            var host = document.createElement("div");
-            host.setAttribute("class", "hostName");
-            host.appendChild(document.createTextNode(hostname));
-            page.parentNode.insertBefore(host, page.nextSibling);
-        
-            // action links (archive, edit, delete, ...)
-            var controls = $x('.//*[@class="cornerControls"]', link)[0];
-            var archive = $x('./a[last()]', controls)[0];
-            archive.setAttribute("title", "");
-            var edit = $x('.//*[@class="secondaryControls"]/a[position()=1]', link)[0];
-            if(edit != undefined){
-                edit.setAttribute("title", "");
-                controls.appendChild(edit);
-            }
-            var del = $x('.//*[@class="secondaryControls"]/a[last()]', link)[0];
-            if(del != undefined){
-                del.setAttribute("title", "");
-                controls.appendChild(del);
-            }
-
-
-            // starring
-            var unstarred = $x('.//*[@class="starToggleUnstarred"]', link)[0];
-            unstarred.setAttribute("title", "");
-            unstarred.replaceChild(document.createTextNode("\u2605"), unstarred.firstChild);
-            page.parentNode.insertBefore(unstarred, page);
-
-            var starred = $x('.//*[@class="starToggleStarred"]', link)[0];
-            starred.setAttribute("title", "");
-            starred.replaceChild(document.createTextNode("\u2605"), starred.firstChild);
-            page.parentNode.insertBefore(starred, page);
-
-            var progress = $x('.//*[@class="starToggleProgress"]', link)[0];
-            page.parentNode.insertBefore(progress, page);
+        // host
+        var hostname = $x('.//span[@class="host"]/text()', link)[0].nodeValue;
+        var host = document.createElement("div");
+        host.setAttribute("class", "hostName");
+        host.appendChild(document.createTextNode(hostname));
+        page.parentNode.insertBefore(host, page.nextSibling);
+    
+        // action links (archive, edit, delete, ...)
+        var controls = $x('.//*[@class="cornerControls"]', link)[0];
+        var archive = $x('./a[last()]', controls)[0];
+        archive.setAttribute("title", "");
+        var edit = $x('.//*[@class="secondaryControls"]/a[position()=1]', link)[0];
+        if(edit != undefined){
+            edit.setAttribute("title", "");
+            controls.appendChild(edit);
         }
+        var del = $x('.//*[@class="secondaryControls"]/a[last()]', link)[0];
+        if(del != undefined){
+            del.setAttribute("title", "");
+            controls.appendChild(del);
+        }
+
+
+        // starring
+        var unstarred = $x('.//*[@class="starToggleUnstarred"]', link)[0];
+        unstarred.setAttribute("title", "");
+        unstarred.replaceChild(document.createTextNode("\u2605"), unstarred.firstChild);
+        page.parentNode.insertBefore(unstarred, page);
+
+        var starred = $x('.//*[@class="starToggleStarred"]', link)[0];
+        starred.setAttribute("title", "");
+        starred.replaceChild(document.createTextNode("\u2605"), starred.firstChild);
+        page.parentNode.insertBefore(starred, page);
+
+        var progress = $x('.//*[@class="starToggleProgress"]', link)[0];
+        page.parentNode.insertBefore(progress, page);
     }
 
 
@@ -278,34 +276,32 @@ var attachCSS = function(css){
 
     // BROWSE (FEATURED STORIES)
     var feature_stories = $x('//div[@id="feature_column"]/div[@class="story"]');
-    if(feature_stories.length > 0){
-        for(i in feature_stories){
-            var story = feature_stories[i];
+    for(var i = 0, l = feature_stories.length; i < l; i++){
+        var story = feature_stories[i];
 
-            // parse date
-            var byline = $x('.//div[@class="byline"]/text()', story)[1].nodeValue.match(/^\s *(\w+) (\d{1,2}), (\d{4})+.*\s *([\w\.]+) */)
-            var date = document.createElement("div");
-            date.setAttribute("class", "story-date");
-            var day = document.createElement("span");
-            day.setAttribute("class", "story-day");
-            day.appendChild(document.createTextNode(byline[2]));
-            date.appendChild(day);
-            var month = document.createElement("span");
-            month.setAttribute("class", "story-month");
-            month.appendChild(document.createTextNode(byline[1]));
-            date.appendChild(month);
-            var year = document.createElement("span");
-            year.setAttribute("class", "story-year");
-            year.appendChild(document.createTextNode(byline[3]));
-            date.appendChild(year);
-            story.appendChild(date);
+        // parse date
+        var byline = $x('.//div[@class="byline"]/text()', story)[1].nodeValue.match(/^\s *(\w+) (\d{1,2}), (\d{4})+.*\s *([\w\.]+) */)
+        var date = document.createElement("div");
+        date.setAttribute("class", "story-date");
+        var day = document.createElement("span");
+        day.setAttribute("class", "story-day");
+        day.appendChild(document.createTextNode(byline[2]));
+        date.appendChild(day);
+        var month = document.createElement("span");
+        month.setAttribute("class", "story-month");
+        month.appendChild(document.createTextNode(byline[1]));
+        date.appendChild(month);
+        var year = document.createElement("span");
+        year.setAttribute("class", "story-year");
+        year.appendChild(document.createTextNode(byline[3]));
+        date.appendChild(year);
+        story.appendChild(date);
 
-            // story host
-            var story_host = byline[4];
-            
-            // read-later link
-            var read_later = $x('.//div[@class="byline"]/a', story)[0];
-        }
+        // story host
+        var story_host = byline[4];
+        
+        // read-later link
+        var read_later = $x('.//div[@class="byline"]/a', story)[0];
 
         $x('//div[@id="feature_column"]/div[last()]')[0].setAttribute("class", "story last-story");
     }
