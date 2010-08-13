@@ -131,7 +131,7 @@ aside {
 	float: left; 
 }
 
-aside a, aside li { 
+aside a, aside li, aside span { 
     font-size: 13px;
 }
 
@@ -152,7 +152,7 @@ h1, h2, h3 {
 }
  
 h1 {
-    font-size: 42px;
+    font-size: 46px;
     line-height: 1.18;
     font-weight: bold;
     color: red;
@@ -165,6 +165,7 @@ h2 {
 
 section h2 {
     margin-top: 96px;
+    font-weight: bold;
 }
 
 h3 {
@@ -197,6 +198,11 @@ ul li {
 
 li.fixed {
     text-decoration: line-through;
+    color: #888;
+}
+
+li.fixed a {
+    color: #888;
 }
 
 em.page-counter-flag {
@@ -234,7 +240,7 @@ code {
     margin: 0 0 20px;
 }
 
-#identity code, #identity .color-scheme {
+.font-stack, .color-scheme {
     -moz-box-shadow: 0 0 10px 1px #CCC;
     -webkit-box-shadow: 0 0 10px 1px #CCC;
     box-shadow: 0 0 10px 1px #CCC;
@@ -288,7 +294,7 @@ code {
     font-size: 12px;
 }
 
-#issues ul, .features {
+ul.issues, .features {
 	margin-left: 0;	
 	width: 648px; 
 	display: block; 
@@ -296,13 +302,13 @@ code {
 	clear: left;
 }
 
-#issues ul li {
+ul.issues li {
     margin: 2px 0 0px 24px;
     list-style: disc;
     font-size: 14px;
 }
 
-#issues ul li a {
+ul.issues li a {
     font-size: 14px;
 }
 
@@ -310,6 +316,18 @@ abbr {
     font-size: 92%;
 }
 
+.twitter img {
+    position: relative;
+    left: -7px;
+}
+
+.twitter span {
+    position: relative;
+    top: -11px;
+}
+
 #tweetmeme {
-    float: left;
+    position: relative;
+    top: 6px;
+    left: 35px;
 }

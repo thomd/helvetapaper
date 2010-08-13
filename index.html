@@ -1,7 +1,7 @@
 ---
 layout: base
-keywords: Greasemonkey Userscript Helvetica Instapaper Helvetapaper Theme Minimalistic
-title: Helvetapaper - a minimalistic theme for Instapaper
+keywords: Greasemonkey Userscript Helvetica Instapaper Helvetapaper Helvetipaper Theme Minimalistic
+title: Helvetapaper - a minimalistic Userscript for Instapaper
 ---
 <header>
 	<hgroup>
@@ -10,10 +10,10 @@ title: Helvetapaper - a minimalistic theme for Instapaper
 	</hgroup>
 </header>
 
-<section id="introduction">
-  <p>Helvetapaper is a minimalistic theme for <em>Instapaper</em>. Helvetapaper gives this terrific web application a cleaner, more objective look, focused and reduced on the bare minimum functionality. See <a href="#fig-1">Fig.1</a> for a screenshot.</p>
+<section>
+  <p>Helvetapaper is a Userscript for <em>Instapaper</em>. Helvetapaper gives this terrific web application a minimalistic, cleaner and more objective look and feel with a focus on the bare minimum functionality. See <a href="#fig-1">Fig.1</a> for a screenshot.</p>
 
-	<aside><a href="http://www.instapaper.com/" title="www.instapaper.com">Instapaper</a> is <cite>a simple tool to save web pages for reading later</cite> by <a href="http://www.marco.org/about" title="About Marco Arment">Marco Arment</a>.</aside>
+	<aside><a href="http://www.instapaper.com/" title="www.instapaper.com"><em>Instapaper</em></a> is <cite>a simple tool to save web pages for reading later</cite> by <a href="http://www.marco.org/about" title="About Marco Arment">Marco Arment</a>.</aside>
 
   <p>Helvetapaper is highly inspired by all the <a href="http://delicious.com/thomd/helvetica+userscript" title="Links of Helvetica based userscripts.">Helvetica userscripts</a> out there, but most of all by the Documentary Film <a href="http://www.helveticafilm.com" title="Official website">Helvetica</a> by Gary Hustwit from 2007.</p>
 
@@ -22,8 +22,11 @@ title: Helvetapaper - a minimalistic theme for Instapaper
     <figcaption><em>Fig.1</em> Screenshot of Instapaper themed by Helvetapaper.</figcaption>
   </figure>
 
-  <p>Helvetapaper hides some features of Instapaper. This was a deliberate decision. I currently do not use all features of Instapaper. If you are missing features which are important for you, drop me a <a href="http://github.com/thomd/helvetapaper/issues" title="Github Issue Tracker">Github issue</a> or <a href="http://github.com/thomd/helvetapaper" title="Fork Helvetapaper from Github">fork Helvetapaper</a> and customize it for your personal needs.</p>
-  <p>On the other hand, Helvetapaper adds some <em>new features</em> which are vital for my daily usage of Instapaper. The following enhancements, as shown in <a href="#fig-1">Fig.1</a>, are currently implemented:</p>
+  <p>Helvetapaper <em>hides some features</em> of Instapaper. This was a deliberate decision. Currently I do not use all features of Instapaper.</p>
+  <p>If you are missing features which are important for you, <a href="http://github.com/thomd/helvetapaper" title="Fork Helvetapaper from Github">fork Helvetapaper</a> and customize it for your personal needs.</p>
+
+  <h3>New Features</h3>
+  <p>On the other hand, Helvetapaper adds some <em>nice new features</em> which are vital for my daily usage of Instapaper. The following enhancements, as shown in <a href="#fig-1">Fig.1</a>, are currently implemented:</p>
   <ul class="features">
     <li><em class="page-counter-flag">page-counter flags</em> on each top-category link (Unread, Starred and Archive).</li>
     <li><em class="new-page-flag">new-page flag</em> on saved pages from within the last three days.</li>
@@ -31,21 +34,19 @@ title: Helvetapaper - a minimalistic theme for Instapaper
   <aside>
     Where is this information from?
     <ul>
-      <li>A temporary hidden <code>iframe</code> is used to count pages of other categories.</li>
+      <li><abbr>AJAX</abbr> requests are used to count pages of other categories.</li>
       <li>Instapapers <abbr>RSS</abbr> Feed is used for informations regarding date/time.</li>
     </ul>
   </aside>
-</section>
 
-<section id="identity">
-  <h2>Helvetapaper Identity</h2>
+  <h3>Helvetapaper Identity</h3>
   <p>Helvetapaper is based on the <em>Helvetica</em> typeface. Considering web fonts, the Helvetica font is <a href="http://www.codestyle.org/css/font-family/sampler-CombinedResults.shtml" title="Font survey results from codestyle.org">reliably installed on Mac <abbr>OS</abbr></a> only, on Windows <abbr>OS</abbr> one should use Arial as a fallback. But there still exist some <a href="http://delicious.com/thomd/helvetica+arial+css" title="Links considering Hervetica vs. Arial as web fonts.">rendering flaws and other drawbacks when using Helvetica on Windows <abbr>OS</abbr></a>.</p>
   <aside>
     <a href="http://en.wikipedia.org/wiki/Helvetica" title="Wikipedia article about the typeface Helvetica.">Helvetica</a> is a sans-serif typeface by Max Miedinger and Eduard Hoffmann released in 1957.
   </aside>
 
   <figure id="fig-2">
-    <code>font-family: Helvetica, Arial, sans-serif;</code>
+    <code class="font-stack">font-family: Helvetica, Arial, sans-serif;</code>
     <figcaption><em>Fig.2</em> Helvetapaper <abbr>CSS</abbr> font stack.</figcaption>
   </figure>
 
@@ -62,42 +63,54 @@ title: Helvetapaper - a minimalistic theme for Instapaper
   </figure>
 </section>
 
-<section id="usage">
-  <h2>Usage</h2>
-  <p>In order to theme your personal Instapaper with Helvetapaper, you need to have <a href="http://www.greasespot.net/" title="The weblog about Greasemonkey">Greasemonkey</a> installed.<br />Greasemonkey is a <em>Firefox</em> <a href="https://addons.mozilla.org/de/firefox/addon/748/" title="Greasemonkey Firefox Add-on">Add-on</a> to <em>control the way we use the web</em>.</p>
+<section>
+  <h2>Helvetapaper Usage</h2>
+  <p>The Helvetapaper userscript works with <a href="https://addons.mozilla.org/de/firefox/addon/748/" title="Greasemonkey Firefox Add-on">Greasemonkey</a> for <em>Firefox</em> and with <a href="http://8-p.info/greasekit/" title="GreaseKit - User Scripting for all WebKit applications">Greasekit</a> for <em>Safari</em>. Helvetapaper may also be used with a Site Specific Browser like <a href="http://fluidapp.com/" title="Fluid - Free Site Specific Browser for Mac OS X Leopard"><em>Fluid.app</em></a> or <a href="https://mozillalabs.com/prism/" title="Prism is an application that lets users split web applications out of their browser and run them directly on their desktop"><em>Mozilla Prism</em></a>.</p>
 
-  <h3>Installing Helvetapaper</h3>
-  <p>Having Greasemonkey installed, just click on the button below:<br /><br /><a class="button" href="http://userscripts.org/scripts/source/78176.user.js">Install Helvetapaper</a></p>
+  <h3>How do I install Helvetapaper?</h3>
+  <p>Just click on the button below:<br /><br /><a class="button" href="http://userscripts.org/scripts/source/78176.user.js">Install Helvetapaper</a></p>
 
-  <aside>
-    This installation link will install Helvetapaper from <a href="http://userscripts.org/users/thomd" title="my other userscrips on userscripts.org">Userscripts.org</a>, a userscript repository by <a href="http://overstimulate.com/about" title="About Jesse Andrews">Jesse Andrews</a>.<br />
-    Helvetapaper contains also an <a href="http://userscripts.org/scripts/show/45266" title="easy userscript updater snippet">userscript updater</a> which checks once a week for updates and will notify you about a new version of Helvetapaper.
-  </aside>
+  <aside>This installation link will install Helvetapaper from <a href="http://userscripts.org/users/thomd" title="my other userscrips on userscripts.org"><em>Userscripts.org</em></a>, a userscript repository by <a href="http://overstimulate.com/about" title="About Jesse Andrews">Jesse Andrews</a>.</aside>
+
+  <h3>How do I update?</h3>
+  <p>The Helvetapaper userscript contains an <a href="http://userscripts.org/scripts/show/45266" title="easy userscript updater snippet">userscript updater</a> function which checks once a week for updates on <a href="http://userscripts.org" title="userscripts repository">userscripts.org</a> and will notify you about a new version of Helvetapaper.
+  </p>
 </section>
 
-<section id="issues">
-  <h2>Open Issues</h2>
-  <p>There are still some <a href="http://github.com/thomd/helvetapaper/issues">issues</a> to improve Helvetapaper:</p>
-  <ul>
+<section>
+  <h2>Development</h2>
+  <p>Since Helvetapaper relies on Instapaper, which I expect to change its code base from time to time, the userscript needs ongoing updates. To be up to date, you may follow this project on <a href="http://twitter.com/helvetapaper">Twitter</a> or <a href="http://github.com/thomd/helvetapaper">Github</a>.</p>
+  <aside class="twitter">
+    <img src="images/twitter.png" alt="Twitter" />
+    <span>Follow Helvetapaper on <a href="http://twitter.com/helvetapaper">Twitter</a>.</span>
+    <div id="tweetmeme">
+      <script type="text/javascript">
+      tweetmeme_style = 'compact';
+      </script>
+      <script type="text/javascript" src="http://tweetmeme.com/i/scripts/button.js"></script>
+    </div>
+  </aside>
+    
+  <h3>Feedback</h3>
+  <p>Be encouraged to give me feedback about problems, bugs or feature requests.<br />Please use <a href="http://twitter.com/helvetapaper">Twitter</a>, plain email (<a href="mailto:helvetapaper@thomd.net">helvetapaper@thomd.net</a>) or drop me an issue on <a href="http://github.com/thomd/helvetapaper/issues">Github's Issue Tracker</a>.</p>
+  
+  <h3>Open Issues</h3>
+  <p>Current issues to improve Helvetapaper:</p>
+  <ul class="issues">
     <li>Instant update of the page-counter when staring, archiving or deleting a page.</li>
     <li>Display paging within Archive page / count all pages within the Archive.</li>
-    <li>Show summary below links. (maybe)</li>
     <li>Add missing Stylesheet for Edit page.</li>
     <li>Add a favicon.</li>
     <li>Use an external Helvetica typeface via @font-face or a similar technique (I'm not sure about this, because font files needs to be hosted somewhere.)</li>
     <li>Options for configuration issues.</li>
-    <li>Test userscript for Google Chrome (<a href="http://code.google.com/p/tampermonkey/">tampermonkey</a>) and Webkit's <a href="http://code.google.com/p/greasekit/">greasekit</a>.</li>
+    <li class="fixed">Support for Webkit's <a href="http://code.google.com/p/greasekit/">greasekit</a> and <a href="http://fluidapp.com/">Fluid.app</a>.</li>
+    <li>Add a Fluid.app icon.</li>
+    <li>Support for Google Chrome <a href="http://code.google.com/p/tampermonkey/">tampermonkey</a>.</li>
     <li class="fixed">Integrate an updater script.</li>
-    <li>Integrate Text feature (like Safari 5 Reader?)</li>
+    <li>Integrate Instapapers Text feature.</li>
   </ul>
 </section>
 
 <footer id="footer">
-  <div id="tweetmeme">
-    <script type="text/javascript">
-    tweetmeme_style = 'compact';
-    </script>
-    <script type="text/javascript" src="http://tweetmeme.com/i/scripts/button.js"></script>
-  </div>
 	<a href="http://github.com/thomd/helvetapaper">Helvetapaper Theme</a> &copy; 2010. By <a href="http://thomd.github.com">Thomas Duerr</a>. Contact: <a href="mailto:helvetapaper@thomd.net">helvetapaper@thomd.net</a>.
 </footer>
