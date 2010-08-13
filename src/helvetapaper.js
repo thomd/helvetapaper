@@ -124,7 +124,7 @@ var _GM_xmlhttpRequest = function(options){
     bottom.firstChild.appendChild(document.createElement("br"));
     bottom.firstChild.appendChild(document.createElement("br"));
     var ad1 = document.createElement("a");
-    ad1.setAttribute("href", "http://thomd.github.com/helvetapaper");
+    ad1.setAttribute("href", "http://helvetapaper.thomd.net");
     ad1.setAttribute("class", "gh-page");
     ad1.appendChild(document.createTextNode("Helvetapaper Theme"));
     bottom.firstChild.appendChild(ad1);
