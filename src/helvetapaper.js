@@ -15,8 +15,6 @@
 //
 // xpath helper
 //
-// if you want to evaluate XPath expressions on the document of an iframe, then you need to use the iframe's document object and call evaluate on it.
-//
 $x = function(p, context){
     var contextNode = context || document;
     var i, arr = [], xpr = document.evaluate(p, contextNode, null, XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
@@ -26,41 +24,38 @@ $x = function(p, context){
 
 
 //
-// xpath helper for iframes (if you want to evaluate XPath expressions on the document of an iframe, then you need to use the iframe's document object and call evaluate on it)
+// xpath helper for document nodes from ajax requests
 //
-$ix = function(p, document_object, context){
-    var document_object = document_object || document;
-    var contextNode = context || document_object;
-    var i, arr = [], xpr = document_object.evaluate(p, contextNode, null, XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
+$xx = function(p, doc){
+    var documentNode = doc || document;
+    var i, arr = [], xpr = documentNode.evaluate(p, documentNode, null, XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
     for (i = 0; item = xpr.snapshotItem(i); i++) arr.push(item);
     return arr;
 }
 
 
 //
-// css helper
+// addStyle function for browsers not supporting GM_addStyle
 //
-var _GM_addStyle = function(css){
-    if(typeof GM_addStyle != "undefined"){
-        GM_addStyle(css);
-    } else {
-		var head = document.getElementsByTagName("head")[0];
-		var style = document.createElement("style");
-		style.type = "text/css";
-		style.appendChild(document.createTextNode(css));
-		head.appendChild(style); 
+if(typeof GM_addStyle === "undefined"){
+    GM_addStyle = function(styles) {
+    	var head = document.getElementsByTagName("head")[0];
+    	var style = document.createElement("style");
+    	style.type = "text/css";
+    	style.appendChild(document.createTextNode(css));
+    	head.appendChild(style); 
     }
 }
 
 
+
 //
-// ajax helper (GreaseKit and hence Fluid.app does not support GM_xmlhttpRequest)
+// ajax function for browsers not supporting GM_xmlhttpRequest (GreaseKit and hence Fluid.app)
 //
-var _GM_xmlhttpRequest = function(options){
-    if(typeof GM_xmlhttpRequest != "undefined"){
-        GM_xmlhttpRequest(options);
-    } else {
-        // TODO: implement error handling
+// TODO: implement error handling
+//
+if(typeof GM_xmlhttpRequest === "undefined"){
+    GM_xmlhttpRequest = function(options) { 
         var http = new XMLHttpRequest();
         http.open(options.method.toUpperCase() || "GET", options.url, true);
         for(var header in options.headers){
@@ -77,17 +72,13 @@ var _GM_xmlhttpRequest = function(options){
 
 
 
+// ------------------------------------------------------------------------------------------------
 
 //
 // DOM MANIPULATION
 //
 ;(function(){
 
-    // do not run inside an iframe
-    if(top != window) return;
-    
-    
-    
     //
     // SOME HELPER NODES
     //
@@ -106,7 +97,7 @@ var _GM_xmlhttpRequest = function(options){
 
 
     //
-    // FOOTER (at bottom of page)
+    // SET FOOTER (at bottom of page)
     //
 
     // remove hints
@@ -214,25 +205,31 @@ var _GM_xmlhttpRequest = function(options){
 
 
     //
-    // CREATE CATEGORY LINKS
+    // CREATE CATEGORY LINKS & ADD PAGE-COUNTER FLAGS
     //
-    // fetch count-data from category pages via temporary iframes
+
+    // helper functions: fetch and parse count-data from category pages by ajax requests
     var setCounts = function(href){
-        if(top != window) return;    
-        var iframe = document.createElement("iframe");
-        iframe.setAttribute("src", "http://www.instapaper.com" + href.getAttribute("href"));
-        iframe.addEventListener("load", function(ev){
-            var count = $ix('//*[@id="bookmark_list"]//div[@class="titleRow"]', this.contentDocument).length;
-            if(count > 0){
-               var counter = document.createElement("sup");
-                counter.appendChild(document.createTextNode(count));
-                href.appendChild(counter);
+        GM_xmlhttpRequest({
+            method: "GET",
+            url:    "http://www.instapaper.com" + href.getAttribute("href"),
+            onload: function(response){
+                parseCounts(response, href);
             }
-            body.removeChild(iframe);
-        }, false);
-        body.appendChild(iframe);
+        });
     }
-	
+    var parseCounts = function(response, href){
+        var tempNode = document.createElement('div');
+        tempNode.innerHTML = response.responseText.replace(/<script(.|\s)*?\/script>/g, '');
+        var count = tempNode.getElementsByClassName('titleRow').length;
+        if(count > 0){
+            var counter = document.createElement("sup");
+            counter.appendChild(document.createTextNode(count));
+            href.appendChild(counter);
+        }
+        tempNode = null;
+    }
+    
     // determine number of links on current page
     if(currentpage_count > 0){
         var counter = document.createElement("sup");
@@ -285,9 +282,9 @@ var _GM_xmlhttpRequest = function(options){
         }
     }
 
-    // get RSS feed (don't request from within an iframe)
-    if(rss && top == window){
-        _GM_xmlhttpRequest({
+    // get RSS feed
+    if(rss){
+        GM_xmlhttpRequest({
              method: "GET",
                 url: rss.getAttribute("href"),
             headers: {"Accept": "text/xml"},
@@ -415,7 +412,6 @@ var _GM_xmlhttpRequest = function(options){
     'div#bottom div a{color:#F20;text-decoration:none;}'+
 
     '#adlabel, #ad, #deckpromo, #adclear{display:none;}'+
-    'iframe{display:none;}'+
 
     '#feature_column{float:none;width:100%;margin:0 0 0 '+(gap)+'px;padding:0;}'+
     '#feature_column .section_header, #side_column{display:none;}'+
@@ -431,7 +427,7 @@ var _GM_xmlhttpRequest = function(options){
     '#feature_column .last-story{border-bottom:none;margin-bottom:0;}'+
     '';
 
-    _GM_addStyle(css);
+    GM_addStyle(css);
 
 })();
 
