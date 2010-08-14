@@ -38,7 +38,7 @@ $xx = function(p, doc){
 // addStyle function for browsers not supporting GM_addStyle
 //
 if(typeof GM_addStyle === "undefined"){
-    GM_addStyle = function(styles) {
+    GM_addStyle = function(css) {
     	var head = document.getElementsByTagName("head")[0];
     	var style = document.createElement("style");
     	style.type = "text/css";
