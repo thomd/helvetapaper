@@ -2,6 +2,7 @@ userscript: helvetapaper.user.js
 id: 78176
 
 history:
-    - 2009-03-23 0.1 created
-    - 2009-05-31 0.2 made global font-size smaller
-    - 2009-06-07 0.3 CSS adjustments for WinOS
+    - 2010-03-23 0.1 created
+    - 2010-05-31 0.2 Smaller global font-size.
+    - 2010-06-07 0.3 CSS adjustments for WinOS.
+    - 2010-08-14 0.4 Fixes for Safari. Read page counts via Ajax-Requests for better performance.

@@ -5,17 +5,15 @@
 // @include       http://instapaper.com/*
 // @include       http://*.instapaper.com/*
 // @author        Thomas Duerr
-// @version       0.3
-// @date          2009-06-07
-// @change        CSS adjustments for WinOS
+// @version       0.4
+// @date          2010-08-14
+// @change        Fixes for Safari. Read page counts via Ajax-Requests for better performance.
 // ==/UserScript==
 
 
 
 //
 // xpath helper
-//
-// if you want to evaluate XPath expressions on the document of an iframe, then you need to use the iframe's document object and call evaluate on it.
 //
 $x = function(p, context){
     var contextNode = context || document;
@@ -26,64 +24,80 @@ $x = function(p, context){
 
 
 //
-// xpath helper for iframes (if you want to evaluate XPath expressions on the document of an iframe, then you need to use the iframe's document object and call evaluate on it)
+// xpath helper for document nodes from ajax requests
 //
-$ix = function(p, document_object, context){
-    var document_object = document_object || document;
-    var contextNode = context || document_object;
-    var i, arr = [], xpr = document_object.evaluate(p, contextNode, null, XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
+$xx = function(p, doc){
+    var documentNode = doc || document;
+    var i, arr = [], xpr = documentNode.evaluate(p, documentNode, null, XPathResult.UNORDERED_NODE_SNAPSHOT_TYPE, null);
     for (i = 0; item = xpr.snapshotItem(i); i++) arr.push(item);
     return arr;
 }
 
 
 //
-// css helper
+// addStyle function for browsers not supporting GM_addStyle
 //
-var attachCSS = function(css){
-    if(GM_addStyle){
-        GM_addStyle(css);
-    } else {
-		var head = document.getElementsByTagName("head")[0];
-		var style = document.createElement("style");
-		style.type = "text/css";
-		style.appendChild(document.createTextNode(css));
-		head.appendChild(style); 
+if(typeof GM_addStyle === "undefined"){
+    GM_addStyle = function(css) {
+    	var head = document.getElementsByTagName("head")[0];
+    	var style = document.createElement("style");
+    	style.type = "text/css";
+    	style.appendChild(document.createTextNode(css));
+    	head.appendChild(style); 
     }
 }
 
 
 
+//
+// ajax function for browsers not supporting GM_xmlhttpRequest (GreaseKit and hence Fluid.app)
+//
+// TODO: implement error handling
+//
+if(typeof GM_xmlhttpRequest === "undefined"){
+    GM_xmlhttpRequest = function(options) { 
+        var http = new XMLHttpRequest();
+        http.open(options.method.toUpperCase() || "GET", options.url, true);
+        for(var header in options.headers){
+            http.setRequestHeader(header, options.headers[header]);
+        }
+        http.onreadystatechange = function(){
+            if (http.readyState == 4 && http.status == 200){
+                options.onload(http);
+            }
+        }
+        http.send();        
+    }
+}
+
+
+
+// ------------------------------------------------------------------------------------------------
 
 //
 // DOM MANIPULATION
 //
 ;(function(){
 
-    // do not run inside an iframe
-    if(top != window) return;
-    
-    
-    
     //
     // SOME HELPER NODES
     //
-    var body = $x('//body')[0];
-    var header = $x('//*[@id="header"]')[0];
-    var logo = $x('//*[@id="logo"]')[0];
-    var title = $x('//*[@id="logo"]/a')[0];
-    var navigation = $x('//*[@id="categoryHeader"]')[0];
+    var body =              $x('//body')[0];
+    var header =            $x('//*[@id="header"]')[0];
+    var logo =              $x('//*[@id="logo"]')[0];
+    var title =             $x('//*[@id="logo"]/a')[0];
+    var navigation =        $x('//*[@id="categoryHeader"]')[0];
     var currentpage_count = $x('//*[@id="bookmark_list"]//div[@class="titleRow"]').length;
-    var username = $x('//div[@id="userpanel"]/b/text()')[0].nodeValue;
-    var logout_link = $x('//div[@id="userpanel"]/a')[2];
-    var nav_links = $x('//h2[@id="categoryHeader"]/a');
-    var rss = $x('//link[@rel="alternate"]')[0];
-    var footer = $x('//div[@id="footer"]/div')[0];
+    var username =          $x('//div[@id="userpanel"]/b/text()')[0].nodeValue;
+    var logout_link =       $x('//div[@id="userpanel"]/a')[2];
+    var nav_links =         $x('//h2[@id="categoryHeader"]/a');
+    var rss =               $x('//link[@rel="alternate"]')[0];
+    var footer =            $x('//div[@id="footer"]/div')[0];
 
 
 
     //
-    // FOOTER (at bottom of page)
+    // SET FOOTER (at bottom of page)
     //
 
     // remove hints
@@ -101,7 +115,7 @@ var attachCSS = function(css){
     bottom.firstChild.appendChild(document.createElement("br"));
     bottom.firstChild.appendChild(document.createElement("br"));
     var ad1 = document.createElement("a");
-    ad1.setAttribute("href", "http://thomd.github.com/helvetapaper");
+    ad1.setAttribute("href", "http://helvetapaper.thomd.net");
     ad1.setAttribute("class", "gh-page");
     ad1.appendChild(document.createTextNode("Helvetapaper Theme"));
     bottom.firstChild.appendChild(ad1);
@@ -138,80 +152,84 @@ var attachCSS = function(css){
     // CHANGE STRUCTURE OF EVERY PAGE-LINK
     //
     var links = $x('//div[@id="bookmark_list"]//div[starts-with(@id,"tableViewCell")]');
-    if(links.length > 0){
-        for(i in links){
-            var link = links[i];
+    for(var i = 0, l = links.length; i < l; i++){
+        var link = links[i];
 
-            // page URL
-            var page = $x('.//*[@class="titleRow"]/a', link)[0];
-            if(page == undefined) continue;
-            var href = page.getAttribute("href");
-            var url = document.createElement("div");
-            url.setAttribute("class", "titleUrl");
-            url.appendChild(document.createTextNode(href));
-            page.parentNode.insertBefore(url, page.nextSibling);
+        // page URL
+        var page = $x('.//*[@class="titleRow"]/a', link)[0];
+        if(page == undefined) continue;
+        var href = page.getAttribute("href");
+        var url = document.createElement("div");
+        url.setAttribute("class", "titleUrl");
+        url.appendChild(document.createTextNode(href));
+        page.parentNode.insertBefore(url, page.nextSibling);
 
-            // host
-            var hostname = $x('.//span[@class="host"]/text()', link)[0].nodeValue;
-            var host = document.createElement("div");
-            host.setAttribute("class", "hostName");
-            host.appendChild(document.createTextNode(hostname));
-            page.parentNode.insertBefore(host, page.nextSibling);
-        
-            // action links (archive, edit, delete, ...)
-            var controls = $x('.//*[@class="cornerControls"]', link)[0];
-            var archive = $x('./a[last()]', controls)[0];
-            archive.setAttribute("title", "");
-            var edit = $x('.//*[@class="secondaryControls"]/a[position()=1]', link)[0];
-            if(edit != undefined){
-                edit.setAttribute("title", "");
-                controls.appendChild(edit);
-            }
-            var del = $x('.//*[@class="secondaryControls"]/a[last()]', link)[0];
-            if(del != undefined){
-                del.setAttribute("title", "");
-                controls.appendChild(del);
-            }
-
-
-            // starring
-            var unstarred = $x('.//*[@class="starToggleUnstarred"]', link)[0];
-            unstarred.setAttribute("title", "");
-            unstarred.replaceChild(document.createTextNode("\u2605"), unstarred.firstChild);
-            page.parentNode.insertBefore(unstarred, page);
-
-            var starred = $x('.//*[@class="starToggleStarred"]', link)[0];
-            starred.setAttribute("title", "");
-            starred.replaceChild(document.createTextNode("\u2605"), starred.firstChild);
-            page.parentNode.insertBefore(starred, page);
-
-            var progress = $x('.//*[@class="starToggleProgress"]', link)[0];
-            page.parentNode.insertBefore(progress, page);
+        // host
+        var hostname = $x('.//span[@class="host"]/text()', link)[0].nodeValue;
+        var host = document.createElement("div");
+        host.setAttribute("class", "hostName");
+        host.appendChild(document.createTextNode(hostname));
+        page.parentNode.insertBefore(host, page.nextSibling);
+    
+        // action links (archive, edit, delete, ...)
+        var controls = $x('.//*[@class="cornerControls"]', link)[0];
+        var archive = $x('./a[last()]', controls)[0];
+        archive.setAttribute("title", "");
+        var edit = $x('.//*[@class="secondaryControls"]/a[position()=1]', link)[0];
+        if(edit != undefined){
+            edit.setAttribute("title", "");
+            controls.appendChild(edit);
         }
+        var del = $x('.//*[@class="secondaryControls"]/a[last()]', link)[0];
+        if(del != undefined){
+            del.setAttribute("title", "");
+            controls.appendChild(del);
+        }
+
+
+        // starring
+        var unstarred = $x('.//*[@class="starToggleUnstarred"]', link)[0];
+        unstarred.setAttribute("title", "");
+        unstarred.replaceChild(document.createTextNode("\u2605"), unstarred.firstChild);
+        page.parentNode.insertBefore(unstarred, page);
+
+        var starred = $x('.//*[@class="starToggleStarred"]', link)[0];
+        starred.setAttribute("title", "");
+        starred.replaceChild(document.createTextNode("\u2605"), starred.firstChild);
+        page.parentNode.insertBefore(starred, page);
+
+        var progress = $x('.//*[@class="starToggleProgress"]', link)[0];
+        page.parentNode.insertBefore(progress, page);
     }
 
 
 
     //
-    // CREATE CATEGORY LINKS
+    // CREATE CATEGORY LINKS & ADD PAGE-COUNTER FLAGS
     //
-    // fetch count-data from category pages via temporary iframes
+
+    // helper functions: fetch and parse count-data from category pages by ajax requests
     var setCounts = function(href){
-        if(top != window) return;    
-        var iframe = document.createElement("iframe");
-        iframe.setAttribute("src", "http://www.instapaper.com" + href.getAttribute("href"));
-        iframe.addEventListener("load", function(ev){
-            var count = $ix('//*[@id="bookmark_list"]//div[@class="titleRow"]', this.contentDocument).length;
-            if(count > 0){
-               var counter = document.createElement("sup");
-                counter.appendChild(document.createTextNode(count));
-                href.appendChild(counter);
+        GM_xmlhttpRequest({
+            method: "GET",
+            url:    "http://www.instapaper.com" + href.getAttribute("href"),
+            onload: function(response){
+                parseCounts(response, href);
             }
-            body.removeChild(iframe);
-        }, false);
-        body.appendChild(iframe);
+        });
     }
-	
+    var parseCounts = function(response, href){
+        var tempNode = document.createElement('div');
+        tempNode.innerHTML = response.responseText.replace(/<script(.|\s)*?\/script>/g, '');
+        var count = tempNode.getElementsByClassName('titleRow').length;
+        if(count > 0){
+            var counter = document.createElement("sup");
+            counter.appendChild(document.createTextNode(count));
+            href.appendChild(counter);
+        }
+        tempNode = null;
+    }
+    
     // determine number of links on current page
     if(currentpage_count > 0){
         var counter = document.createElement("sup");
@@ -264,12 +282,12 @@ var attachCSS = function(css){
         }
     }
 
-    // get RSS feed (don't request from within an iframe)
-    if(rss && top == window){
+    // get RSS feed
+    if(rss){
         GM_xmlhttpRequest({
              method: "GET",
                 url: rss.getAttribute("href"),
-            headers: {"User-Agent": "Mozilla/5.0 (compatible) Greasemonkey", "Accept": "text/xml"},
+            headers: {"Accept": "text/xml"},
              onload: parseRssFeed
         });
     }
@@ -278,34 +296,32 @@ var attachCSS = function(css){
 
     // BROWSE (FEATURED STORIES)
     var feature_stories = $x('//div[@id="feature_column"]/div[@class="story"]');
-    if(feature_stories.length > 0){
-        for(i in feature_stories){
-            var story = feature_stories[i];
+    for(var i = 0, l = feature_stories.length; i < l; i++){
+        var story = feature_stories[i];
 
-            // parse date
-            var byline = $x('.//div[@class="byline"]/text()', story)[1].nodeValue.match(/^\s *(\w+) (\d{1,2}), (\d{4})+.*\s *([\w\.]+) */)
-            var date = document.createElement("div");
-            date.setAttribute("class", "story-date");
-            var day = document.createElement("span");
-            day.setAttribute("class", "story-day");
-            day.appendChild(document.createTextNode(byline[2]));
-            date.appendChild(day);
-            var month = document.createElement("span");
-            month.setAttribute("class", "story-month");
-            month.appendChild(document.createTextNode(byline[1]));
-            date.appendChild(month);
-            var year = document.createElement("span");
-            year.setAttribute("class", "story-year");
-            year.appendChild(document.createTextNode(byline[3]));
-            date.appendChild(year);
-            story.appendChild(date);
+        // parse date
+        var byline = $x('.//div[@class="byline"]/text()', story)[1].nodeValue.match(/^\s *(\w+) (\d{1,2}), (\d{4})+.*\s *([\w\.]+) */)
+        var date = document.createElement("div");
+        date.setAttribute("class", "story-date");
+        var day = document.createElement("span");
+        day.setAttribute("class", "story-day");
+        day.appendChild(document.createTextNode(byline[2]));
+        date.appendChild(day);
+        var month = document.createElement("span");
+        month.setAttribute("class", "story-month");
+        month.appendChild(document.createTextNode(byline[1]));
+        date.appendChild(month);
+        var year = document.createElement("span");
+        year.setAttribute("class", "story-year");
+        year.appendChild(document.createTextNode(byline[3]));
+        date.appendChild(year);
+        story.appendChild(date);
 
-            // story host
-            var story_host = byline[4];
-            
-            // read-later link
-            var read_later = $x('.//div[@class="byline"]/a', story)[0];
-        }
+        // story host
+        var story_host = byline[4];
+        
+        // read-later link
+        var read_later = $x('.//div[@class="byline"]/a', story)[0];
 
         $x('//div[@id="feature_column"]/div[last()]')[0].setAttribute("class", "story last-story");
     }
@@ -315,18 +331,19 @@ var attachCSS = function(css){
     //
     // HELVETAPAPER CSS-STYLES
     //
-    // used typographic scale [px]: 10 11 [12] [14] [16] 18 21 [24] [30] [36] [48] 60 72 96 [120]
+    // used typographic scale [px]: 12, 14, 16, 24, 30, 36, 48, 120
     // used color scheme: #FFFFFF, #F2F2F2, #E2E2E2, #BBBBBB, #444444, #FF2200
     //
 
-    // OS detection
-    var os = null;
-    if (navigator.appVersion.indexOf('Win') != -1) os = 'MS';
-    if (navigator.appVersion.indexOf('Mac') != -1) os = 'OSX';
+    // OS/UA detection
+    var os_ua = null;
+    if (navigator.appVersion.indexOf('Mac') != -1 && navigator.userAgent.indexOf('Firefox') != -1) os_ua = 'OSX_FF';
     
-    // OS specific CSS corrections
-    var new_padding = (os == 'OSX') ? 'padding:5px 10px 1px' : 'padding:2px 10px 1px';
-    var sup_padding = (os == 'OSX') ? 'padding:5px 8px 0' : 'padding:1px 8px';
+    // OS/UA specific CSS corrections
+    var new_padding =          (os_ua == 'OSX_FF') ? 'padding:5px 10px 1px' : 'padding:2px 10px 1px';
+    var sup_padding =          (os_ua == 'OSX_FF') ? 'padding:5px 8px 0' : 'padding:1px 8px';
+    var categorylink_padding = (os_ua == 'OSX_FF') ? 'padding:3px 8px' : 'padding:0px 8px 3px';
+    var star_size =            (os_ua == 'OSX_FF') ? 'font-size:32px' : 'font-size:28px';
 
     // center!
     var content_width = 760;  // for 1024 screens
@@ -348,17 +365,17 @@ var attachCSS = function(css){
     '#content{overflow:hidden;padding-top:10px;}'+
     '#content h2#categoryHeader{color:#444;font-weight:bold;font-size:36px;line-height:1.5;font-family:Helvetica,sans-serif;letter-spacing:-1px;margin:0 0 30px '+(gap)+'px;float:none;}'+
     '#content h2#categoryHeader span,h2#categoryHeader a{display:none}'+
-    '#content h2#categoryHeader sup{-moz-border-radius:10px;background:#BBB;color:#FFF;font-weight:normal;letter-spacing:0;margin-left:-6px;'+(sup_padding)+';}'+
+    '#content h2#categoryHeader sup{-moz-border-radius:10px;-webkit-border-radius:10px;font-size:28px;background:#BBB;color:#FFF;font-weight:normal;letter-spacing:0;margin-left:-6px;'+(sup_padding)+';}'+
     '#content h2#categoryHeader div{display:inline-block;margin-left:20px;}'+
-    '#content h2#categoryHeader div.categorylink a{color:#F20;display:block;font-size:30px;font-family:Helvetica,sans-serif;letter-spacing:0;height:30px;line-height:1.2;padding:3px 8px;outline:none;}'+
+    '#content h2#categoryHeader div.categorylink a{color:#F20;display:block;font-size:30px;font-family:Helvetica,sans-serif;letter-spacing:0;height:30px;line-height:1.2;'+(categorylink_padding)+';outline:none;}'+
     '#content h2#categoryHeader div.categorylink a:hover{text-decoration:none;background:#F20;color:#FFF;}'+
-    '#content h2#categoryHeader div.categorylink a sup{background:#FAA;color:#FFF;display:inline-block;margin:-14px -2px 0 3px;}'+
+    '#content h2#categoryHeader div.categorylink a sup{background:#FAA;color:#FFF;font-size:24px;display:inline-block;margin:-14px -2px 0 3px;}'+
 
     'div#right_column,div#paginationTop{display:none;}'+
     'div#left_column,div#bookmark_list{width:100%;}'+
     'div#left_column{padding-bottom:8px !important;}'+
 
-    'div#bookmark_list .tableViewCell{-moz-border-radius:0;border:none;border-top:8px solid #FFF;border-bottom:1px solid #E2E2E2;background:#F2F2F2;padding:0;}'+
+    'div#bookmark_list .tableViewCell{-moz-border-radius:0;-webkit-border-radius:0;border:none;border-top:8px solid #FFF;border-bottom:1px solid #E2E2E2;background:#F2F2F2;padding:0;}'+
     'div#bookmark_list .cornerControls{margin-top:2px;}'+
     'div#bookmark_list .cornerControls .textButton{display:none;}'+
 
@@ -370,15 +387,15 @@ var attachCSS = function(css){
     'div#bookmark_list .titleUrl{font-weight:bold;font-size:24px;line-height:1.1;font-family:Helvetica,sans-serif;color:#BBB;width:none;margin:0 0 20px '+(2*gap)+'px;display:block;}'+
     'div#bookmark_list .titleUrl{display:none;}'+
     'div#bookmark_list .hostName{font-weight:bold;font-size:21px;line-height:1.2;font-family:Helvetica,sans-serif;color:#BBB;width:none;margin:0 0 14px '+(2*gap)+'px;display:block;}'+
-    'div#bookmark_list .tableViewCell:hover .cornerControls a{color:#F20 !important;-moz-border-radius:0;}'+
+    'div#bookmark_list .tableViewCell:hover .cornerControls a{color:#F20 !important;-moz-border-radius:0;-webkit-border-radius:0;}'+
 
     'div#bookmark_list #tableViewCell0 div{color:#444;padding-top:6px;font-size:36px;margin-top:0 !important;}'+
 
     'div#bookmark_list .titleRow{width:100%;margin-left:-'+(gap)+'px;padding:0;position:relative;}'+
     'div#bookmark_list .titleRow div.pagelink{width:none;margin-left:190px;display:inline;}'+
-    'div#bookmark_list .titleRow a.starToggleStarred{font-size:32px;line-height:1.1;font-family:Helvetica,sans-serif;color:#F20;width:none;display:inline;position:absolute;left:'+(2*gap-50)+'px;top:15px;outline:none;}'+
+    'div#bookmark_list .titleRow a.starToggleStarred{'+(star_size)+';line-height:1.1;font-family:Helvetica,sans-serif;color:#F20;width:none;display:inline;position:absolute;left:'+(2*gap-50)+'px;top:15px;outline:none;}'+
     'div#bookmark_list .titleRow a.starToggleStarred:hover{text-decoration:none;}'+
-    'div#bookmark_list .titleRow a.starToggleUnstarred{font-size:32px;line-height:1.1;font-family:Helvetica,sans-serif;color:#BBB;width:none;display:inline;position:absolute;left:'+(2*gap-50)+'px;top:15px;outline:none;}'+
+    'div#bookmark_list .titleRow a.starToggleUnstarred{'+(star_size)+';line-height:1.1;font-family:Helvetica,sans-serif;color:#BBB;width:none;display:inline;position:absolute;left:'+(2*gap-50)+'px;top:15px;outline:none;}'+
     'div#bookmark_list .titleRow a.starToggleProgress{display:inline;position:absolute;left:'+(2*gap-50)+'px;top:19px;outline:none;}'+
     'div#bookmark_list .titleRow a.starToggleProgress img{display:none;}'+
     'div#bookmark_list .tableViewCell:hover .titleRow a.starToggleUnstarred:hover{text-decoration:none;color:#F20;}'+
@@ -386,7 +403,7 @@ var attachCSS = function(css){
     'div#bookmark_list .titleRow a.tableViewCellTitleLink:hover{text-decoration:none;}'+
 
     'div#bookmark_list .tableViewCell:hover .titleRow a.tableViewCellTitleLink{text-decoration:none;color:#F20;}'+
-    'div#bookmark_list .titleRow a.tableViewCellTitleLink span.new{-moz-border-radius:10px;background:#444;color:#FFF;'+(new_padding)+';}'+
+    'div#bookmark_list .titleRow a.tableViewCellTitleLink span.new{-moz-border-radius:10px;-webkit-border-radius:10px;background:#444;color:#FFF;'+(new_padding)+';}'+
     'div#bookmark_list .titleRow div.summary{display:none;}'+
     'div#bookmark_list .secondaryControls{display:none;}'+
 
@@ -396,7 +413,6 @@ var attachCSS = function(css){
     'div#bottom div a{color:#F20;text-decoration:none;}'+
 
     '#adlabel, #ad, #deckpromo, #adclear{display:none;}'+
-    'iframe{display:none;}'+
 
     '#feature_column{float:none;width:100%;margin:0 0 0 '+(gap)+'px;padding:0;}'+
     '#feature_column .section_header, #side_column{display:none;}'+
@@ -404,7 +420,7 @@ var attachCSS = function(css){
     '#feature_column .story .story-date{position:absolute;top:1px;right:'+(content_width+10)+'px;background:#FFF;padding:6px 6px 1px;}'+
     '#feature_column .story .story-date .story-day{display:block;font-size:36px;line-height:1;margin:0 21px 0 4px;text-align:right;color:#F20;}'+
     '#feature_column .story .story-date .story-month{display:block;text-transform:uppercase;margin:-3px 22px 0 4px;text-align:right;}'+
-    '#feature_column .story .story-date .story-year{-moz-transform:rotate(-90deg);position:absolute;top:13px;right:-10px;font-size:21px;}'+
+    '#feature_column .story .story-date .story-year{-moz-transform:rotate(-90deg);-webkit-transform:rotate(-90deg);position:absolute;top:13px;right:-10px;font-size:21px;}'+
     '#feature_column .story .byline{display:none;}'+
     '#feature_column .story h2 a{font-family:Helvetica,sans-serif;font-size:24px;color:#444;}'+
     '#feature_column .story h2 a:hover{text-decoration:none;color:#F20;}'+
@@ -412,21 +428,26 @@ var attachCSS = function(css){
     '#feature_column .last-story{border-bottom:none;margin-bottom:0;}'+
     '';
 
-    attachCSS(css);
+    GM_addStyle(css);
 
 })();
 
 
 
 // ----- HISTORY ----------------------------------------------------------------------------------
-// 2009-03-23 - 0.1 created
-// 2009-05-31 - 0.2 made global font-size smaller
-// 2009-06-07 - 0.3 CSS adjustments for WinOS
+// 2010-03-23 - 0.1 created
+// 2010-05-31 - 0.2 Smaller global font-size.
+// 2010-06-07 - 0.3 CSS adjustments for WinOS.
+// 2010-08-14 - 0.4 Fixes for Safari. Read page counts via Ajax-Requests for better performance.
 
 
 //
-// ---------- userscript updater --------------------------------------------------------------------------------------
+// ----- USERSCRIPT UPDATER -----------------------------------------------------------------------
 //
+
+// run updater only in browsers suporting GM_xmlhttpRequest, GM_setValue, GM_getValue and GM_addStyle
+if(typeof GM_xmlhttpRequest == "undefined" || typeof GM_setValue == "undefined" || typeof GM_getValue == "undefined" || typeof GM_addStyle == "undefined") return;
+
 var userscriptUpdater = function(){
 
     var css = "div.greasemonkey_updater{padding:10px 0 10px 15px;background:#F2F2F2;}" +
@@ -550,9 +571,9 @@ var userscriptUpdater = function(){
 // initialize updater
 userscriptUpdater.init({
     scriptId:       "78176",     // insert id of your userscript from userscripts.org!
-    currentVersion: "0.3"        // insert current version number based on versioning scheme: major.minor[.bugfix]
+    currentVersion: "0.4"        // insert current version number based on versioning scheme: major.minor[.bugfix]
 });
 
 //
-// ---------- / userscript updater ------------------------------------------------------------------------------------
+// ----- / USERSCRIPT UPDATER ---------------------------------------------------------------------
 //
