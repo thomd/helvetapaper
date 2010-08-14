@@ -17,3 +17,4 @@ How do I use it?
 
 Go to [helvetapaper.thomd.net](http://helvetapaper.thomd.net) and follow instructions.
 
+[License](LICENSE.txt) (MIT)
