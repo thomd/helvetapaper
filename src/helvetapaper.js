@@ -186,6 +186,20 @@ if(typeof GM_xmlhttpRequest === "undefined"){
             controls.appendChild(del);
         }
 
+        // text reader
+        var text = $x('.//a[contains(@class,"textButton")]', controls)[0];
+        if(text != undefined){
+            var textButton = document.createElement("a");
+            textButton.setAttribute("class", "text-button");
+            textButton.href = text.href;
+            textButton.addEventListener("click", function(ev){
+                ev.preventDefault();
+                top.location.href = this.href;
+            }, false);
+            textButton.innerHTML = "open in <em>Text Reader</em>";
+            var tableViewCellTitleLink = $x('.//*[@class="titleRow"]/a[@class="tableViewCellTitleLink"]', link)[0];
+            tableViewCellTitleLink.appendChild(textButton);
+        }
 
         // starring
         var unstarred = $x('.//*[@class="starToggleUnstarred"]', link)[0];
@@ -257,7 +271,7 @@ if(typeof GM_xmlhttpRequest === "undefined"){
     // put a 'New'-flag on new links from within the last three days. 
     // For this the RSS feed is parsed.
     //
-	var timeslot = 1000*60*60*24*3;
+    var timeslot = 1000*60*60*24*3;
 	
     var parseRssFeed = function(response){
         if (!response.responseXML) {
@@ -399,11 +413,16 @@ if(typeof GM_xmlhttpRequest === "undefined"){
     'div#bookmark_list .titleRow a.starToggleProgress{display:inline;position:absolute;left:'+(2*gap-50)+'px;top:19px;outline:none;}'+
     'div#bookmark_list .titleRow a.starToggleProgress img{display:none;}'+
     'div#bookmark_list .tableViewCell:hover .titleRow a.starToggleUnstarred:hover{text-decoration:none;color:#F20;}'+
-    'div#bookmark_list .titleRow a.tableViewCellTitleLink{font-weight:bold;font-size:21px;line-height:1.2;font-family:Helvetica,sans-serif;color:#444;width:none;display:block;margin:21px 0 0 '+(2*gap)+'px;outline:none;}'+
+    'div#bookmark_list .titleRow a.tableViewCellTitleLink{font-weight:bold;font-size:21px;line-height:1.2;font-family:Helvetica,sans-serif;color:#444;width:none;display:inline-block;margin:21px 0 0 '+(2*gap)+'px;outline:none;}'+
     'div#bookmark_list .titleRow a.tableViewCellTitleLink:hover{text-decoration:none;}'+
 
     'div#bookmark_list .tableViewCell:hover .titleRow a.tableViewCellTitleLink{text-decoration:none;color:#F20;}'+
     'div#bookmark_list .titleRow a.tableViewCellTitleLink span.new{-moz-border-radius:10px;-webkit-border-radius:10px;background:#444;color:#FFF;'+(new_padding)+';}'+
+    'div#bookmark_list .titleRow a.tableViewCellTitleLink a.text-button{display:none;margin-left:16px;position:relative;color:#BBB;}'+
+    'div#bookmark_list .titleRow a.tableViewCellTitleLink:hover a.text-button{display:inline;}'+
+    'div#bookmark_list .titleRow a.tableViewCellTitleLink a.text-button:hover{text-decoration:none;}'+
+    'div#bookmark_list .titleRow a.tableViewCellTitleLink a.text-button em{font-style:normal;}'+
+    'div#bookmark_list .titleRow a.tableViewCellTitleLink a.text-button:hover em{color:#444;}'+
     'div#bookmark_list .titleRow div.summary{display:none;}'+
     'div#bookmark_list .secondaryControls{display:none;}'+
 
