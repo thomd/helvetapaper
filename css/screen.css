@@ -60,28 +60,48 @@ a, a:link, a:visited, a:focus, a:hover, a:active {
     text-decoration: underline;
 }
 
-a.button {
-    color: #FFF;
-    background: url(../images/download.png) 22px 10px no-repeat, -moz-linear-gradient(-90deg, #FF4C2F, #AF1900);
-    background: url(../images/download.png) 22px 10px no-repeat, -webkit-gradient(linear,left top,left bottom,color-stop(0, #FF4C2F),color-stop(1, #AF1900));
-    filter:  progid:DXImageTransform.Microsoft.gradient(startColorStr='#FF4C2F', EndColorStr='#AF1900');
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#FF4C2F', EndColorStr='#AF1900')";
-    text-decoration: none;
-    padding: 4px 20px 2px 60px;
+.button {
     margin-top: 12px;
-    display: inline-block;
-    -moz-border-radius: 30px;
-    -webkit-border-radius: 30px;
-    border-radius: 30px;
-    font-size: 24px;
-    text-shadow: 0 -1px 0 #000;
 }
 
-a.button:hover {
-    -moz-box-shadow: 0 0 12px #888;
-    -webkit-box-shadow: 0 0 12px #888;
-    box-shadow: 0 0 12px #888;
+.button a {
+    display: inline-block;
+    background: #c63929;
+    background: url(../images/download.png) 25px 8px no-repeat, -moz-linear-gradient(0% 100% 90deg, #a20601 0%, #cb0500 50%, #db504d 50%, #f37873 100%);
+    background: url(../images/download.png) 25px 8px no-repeat, -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #f37873), color-stop(0.5, #db504d), color-stop(0.5, #cb0500), color-stop(1, #a20601));
+    border: 1px solid #951100;
+    border-radius: 32px;
+    -moz-border-radius: 32px;
+    -webkit-border-radius: 32px;
+    box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4), 0 1px 3px #333, 0 0 12px #888;
+    -moz-box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4), 0 1px 3px #333, 0 0 12px #888;
+    -webkit-box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4), 0 1px 3px #333, 0 0 12px #888;
+    color: #fff;
+    font-family: "helvetica neue", helvetica, arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    line-height: 1;
+    padding: 10px 30px 12px 66px;
+    text-align: center;
     text-decoration: none;
+    text-shadow: 0 -1px 0 #000;
+    outline: none;
+}
+
+.button a:hover {
+    background: #cb0500;
+    background: url(../images/download.png) 25px 8px no-repeat, -moz-linear-gradient(0% 100% 90deg, #891100 0%, #B51700 50%, #c63929 50%, #EE432E 100%);
+    background: url(../images/download.png) 25px 8px no-repeat, -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #ee432e), color-stop(0.5, #c63929), color-stop(0.5, #b51700), color-stop(1, #891100));
+}
+
+.button a:active {
+    background: #b30300;
+    background: url(../images/download.png) 25px 8px no-repeat, -moz-linear-gradient(0% 100% 90deg, #700d00 0%, #9c1500 50%, #ad3224 50%, #d43c28 100%);
+    background: url(../images/download.png) 25px 8px no-repeat, -webkit-gradient(linear, 0 0, 0 100%, color-stop(0, #d43c28), color-stop(0.5, #ad3224), color-stop(0.5, #9c1500), color-stop(1, #700d00));
+    box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4), 0 0 12px #888;
+    -moz-box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4), 0 0 12px #888;
+    -webkit-box-shadow: inset 0px 0px 0px 1px rgba(255, 115, 100, 0.4), 0 0 12px #888;
 }
 
 em {
@@ -172,7 +192,7 @@ h3 {
     font-size: 21px;
     line-height: 1.24;
     font-weight: bold;
-    margin: 36px 0 0 0;   
+    margin: 72px 0 0 0;   
 	width: 648px; 
 	display: block; 
 	float: left; 
@@ -288,7 +308,8 @@ code {
     height: 60px;
 }
 
-#footer a {
+#footer a,
+#footer span {
     color: #333;
     font-weight: normal;
     font-size: 12px;
