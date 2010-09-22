@@ -315,6 +315,10 @@ code {
     font-size: 12px;
 }
 
+.license {
+    float: right;
+}
+
 ul.issues, .features {
 	margin-left: 0;	
 	width: 648px; 
