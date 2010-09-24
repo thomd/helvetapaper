@@ -39,7 +39,7 @@ body, div, span, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, code, ol, 
 
 /* page */
 body {
-    font: normal normal 16px/1.615 Helvetica,sans-serif;
+    font: normal normal 16px/1.615 "helvetica neue", helvetica, arial, sans-serif;
     background: #EEE url(../images/noise.png) repeat top left;
     max-width: 936px;
 	width: 936px;
@@ -257,7 +257,7 @@ code {
 /* color scheme */
 .color-scheme {
     display: inline-block;
-    margin: 0 0 20px;
+    margin: 0 0 12px;
 }
 
 .font-stack, .color-scheme {
