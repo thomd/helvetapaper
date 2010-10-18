@@ -190,15 +190,17 @@ if(typeof GM_xmlhttpRequest === "undefined"){
         var text = $x('.//a[contains(@class,"textButton")]', controls)[0];
         if(text != undefined){
             var textButton = document.createElement("a");
-            textButton.setAttribute("class", "text-button");
             textButton.href = text.href;
+            textButton.innerHTML = "open in <em>Text Reader</em>";
             textButton.addEventListener("click", function(ev){
                 ev.preventDefault();
                 top.location.href = this.href;
             }, false);
-            textButton.innerHTML = "open in <em>Text Reader</em>";
+            var textButtonWrapper = document.createElement("div");
+            textButtonWrapper.setAttribute("class", "text-button");
+            textButtonWrapper.appendChild(textButton);
             var tableViewCellTitleLink = $x('.//*[@class="titleRow"]/a[@class="tableViewCellTitleLink"]', link)[0];
-            tableViewCellTitleLink.appendChild(textButton);
+            tableViewCellTitleLink.appendChild(textButtonWrapper);
         }
 
         // starring
@@ -420,11 +422,14 @@ if(typeof GM_xmlhttpRequest === "undefined"){
 
     'div#bookmark_list .tableViewCell:hover .titleRow a.tableViewCellTitleLink{text-decoration:none;color:#F20;}'+
     'div#bookmark_list .titleRow a.tableViewCellTitleLink span.new{-moz-border-radius:10px;-webkit-border-radius:10px;background:#444;color:#FFF;'+(new_padding)+';}'+
-    'div#bookmark_list .titleRow a.tableViewCellTitleLink a.text-button{display:none;margin-left:16px;position:relative;color:#BBB;}'+
-    'div#bookmark_list .titleRow a.tableViewCellTitleLink:hover a.text-button{display:inline;}'+
-    'div#bookmark_list .titleRow a.tableViewCellTitleLink a.text-button:hover{text-decoration:none;}'+
-    'div#bookmark_list .titleRow a.tableViewCellTitleLink a.text-button em{font-style:normal;}'+
-    'div#bookmark_list .titleRow a.tableViewCellTitleLink a.text-button:hover em{color:#444;}'+
+    'div#bookmark_list .titleRow a.tableViewCellTitleLink .text-button{display:none;position:absolute;width:240px;}'+
+    'div#bookmark_list .titleRow a.tableViewCellTitleLink .text-button a{margin-left:16px;color:#BBB;}'+
+    'div#bookmark_list .titleRow a.tableViewCellTitleLink:hover .text-button{display:inline;}'+
+    'div#bookmark_list .titleRow a.tableViewCellTitleLink .text-button a:hover{text-decoration:none;}'+
+    'div#bookmark_list .titleRow a.tableViewCellTitleLink .text-button a em{font-style:normal;}'+
+    'div#bookmark_list .titleRow a.tableViewCellTitleLink .text-button a em:after{content:" ?";}'+
+    'div#bookmark_list .titleRow a.tableViewCellTitleLink .text-button a:hover em:after{content:" !";}'+
+    'div#bookmark_list .titleRow a.tableViewCellTitleLink .text-button a:hover em{color:#444;}'+
     'div#bookmark_list .titleRow div.summary{display:none;}'+
     'div#bookmark_list .secondaryControls{display:none;}'+
 
