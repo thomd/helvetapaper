@@ -10,11 +10,11 @@ Features:
 * __Page-counter flags__ on the navigation links _Unread_, _Starred_ and _Archive_. 
 * __New-page flag__ on pages saved within the last three days.
 
-![Screenshot of Helvetapaper](http://helvetapaper.thomd.net/images/screenshot.png "Screenshot of Helvetapaper")
+![Screenshot of Helvetapaper](https://raw.githubusercontent.com/thomd/helvetapaper/gh-pages/images/screenshot.png "Screenshot of Helvetapaper")
 
 How do I use it?
 ================
 
-Go to [helvetapaper.thomd.net](http://helvetapaper.thomd.net) and follow instructions.
+Go to [thomd.github.io/helvetapaper](http://thomd.github.io/helvetapaper) and follow instructions.
 
 [License](LICENSE.txt) (MIT)
